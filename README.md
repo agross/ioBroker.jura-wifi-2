@@ -194,10 +194,10 @@ the fallback for every model.
 
 ## Releasing
 
-Add the next release notes under a `### **WORK IN PROGRESS**` heading at the
-top of the changelog. From a
-clean, up-to-date `main`, preview the bump with
-`npm run release patch -- --dry`. Run `npm run release patch` to release, or
+Add a `### **WORK IN PROGRESS**` heading at the top of the changelog with at
+least one release note, then commit it. From a clean, up-to-date `main`,
+preview the bump with `npm run release patch -- --dry`. Run
+`npm run release patch` to release, or
 choose `minor` or `major`. The release script updates the package versions and
 ioBroker news, then pushes the release commit and `v` tag. The **Test and
 Release** workflow tests the tagged commit, publishes it to npm, and creates a
@@ -211,6 +211,10 @@ Publishing](https://docs.npmjs.com/trusted-publishers/) for
 for subsequent versions.
 
 ## Changelog
+
+### **WORK IN PROGRESS**
+
+- Document how to install the adapter from npm through ioBroker Admin.
 
 ### 0.3.3 (2026-11-22)
 
