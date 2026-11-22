@@ -92,10 +92,9 @@ function recipeOptions(
   { productCode, parameter }: { productCode?: unknown; parameter?: unknown },
 ) {
   if (parameter === undefined) {
-    return products.map(({ code, name }) => ({
-      value: String(code),
-      label: name,
-    }));
+    return products
+      .map(({ code, name }) => ({ value: String(code), label: name }))
+      .sort((a, b) => a.label.localeCompare(b.label, 'en'));
   }
   if (
     typeof parameter !== 'string' ||

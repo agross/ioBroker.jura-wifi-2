@@ -107,6 +107,10 @@ test('Admin recipe options follow the detected catalog and the selected product'
   const products = options();
   assert(Array.isArray(products));
   assert.deepEqual(
+    products.slice(0, 5).map(option => option.label),
+    ['Barista Lungo', 'Cafe Barista', 'Cappuccino', 'Coffee', 'Cortado'],
+  );
+  assert.deepEqual(
     products.find(option => option.value === '5'),
     { value: '5', label: 'Milkcoffee' },
   );
