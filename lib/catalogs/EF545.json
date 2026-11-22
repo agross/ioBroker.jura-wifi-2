@@ -35,6 +35,11 @@
         "min": 1,
         "max": 5,
         "step": 1
+      },
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "double": 49
       }
     },
     {
@@ -59,6 +64,11 @@
         "min": 1,
         "max": 5,
         "step": 1
+      },
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "double": 54
       }
     },
     {
@@ -95,6 +105,12 @@
         "min": 1,
         "max": 10,
         "step": 1
+      },
+      "preselections": {
+        "xtrashot": true,
+        "powder": true,
+        "coldbrew": true,
+        "fakesweetfoam": true
       }
     },
     {
@@ -143,6 +159,12 @@
         "min": 1,
         "max": 10,
         "step": 1
+      },
+      "preselections": {
+        "xtrashot": true,
+        "powder": true,
+        "coldbrew": true,
+        "fakesweetfoam": true
       }
     },
     {
@@ -179,6 +201,11 @@
         "min": 1,
         "max": 10,
         "step": 1
+      },
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "fakesweetfoam": true
       }
     },
     {
@@ -233,6 +260,12 @@
         "min": 1,
         "max": 10,
         "step": 1
+      },
+      "preselections": {
+        "xtrashot": true,
+        "powder": true,
+        "coldbrew": true,
+        "fakesweetfoam": true
       }
     },
     {
@@ -262,6 +295,9 @@
         "min": 1,
         "max": 10,
         "step": 1
+      },
+      "preselections": {
+        "fakesweetfoam": true
       }
     },
     {
@@ -291,6 +327,9 @@
         "min": 1,
         "max": 10,
         "step": 1
+      },
+      "preselections": {
+        "fakesweetfoam": true
       }
     },
     {
@@ -369,6 +408,10 @@
         "min": 1,
         "max": 5,
         "step": 1
+      },
+      "preselections": {
+        "powder": true,
+        "double": 56
       }
     },
     {
@@ -399,6 +442,10 @@
         "min": 1,
         "max": 5,
         "step": 1
+      },
+      "preselections": {
+        "powder": true,
+        "double": 57
       }
     },
     {
@@ -447,6 +494,11 @@
         "min": 1,
         "max": 10,
         "step": 1
+      },
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "fakesweetfoam": true
       }
     },
     {
@@ -507,6 +559,12 @@
         "min": 1,
         "max": 10,
         "step": 1
+      },
+      "preselections": {
+        "xtrashot": true,
+        "powder": true,
+        "coldbrew": true,
+        "fakesweetfoam": true
       }
     },
     {
@@ -669,8 +727,17 @@
     "0xFE": "Aroma Select",
     "0xFF": "P_Mode"
   },
-  "dispensingStates": ["0x34", "0x37", "0x3C", "0x41"],
-  "maintenanceStatusFields": ["Cleaning", "Filter change", "Descaling"],
+  "dispensingStates": [
+    "0x34",
+    "0x37",
+    "0x3C",
+    "0x41"
+  ],
+  "maintenanceStatusFields": [
+    "Cleaning",
+    "Filter change",
+    "Descaling"
+  ],
   "maintenanceCounterFields": [
     "Cleaning",
     "Filter change",

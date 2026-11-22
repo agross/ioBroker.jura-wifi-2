@@ -1,99 +1,224 @@
 {
   "modelId": "EF1030",
-
   "products": [
     {
       "code": 2,
       "name": "Espresso",
       "kind": "COFFEE",
-      "strength": { "default": 8, "min": 1, "max": 10, "step": 1 },
-      "water":    { "default": 45, "min": 15, "max": 80, "step": 5 },
-      "defaultTemperature": "HIGH"
+      "strength": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "water": {
+        "default": 45,
+        "min": 15,
+        "max": 80,
+        "step": 5
+      },
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "double": 49
+      }
     },
     {
       "code": 3,
       "name": "Coffee",
       "kind": "COFFEE",
-      "strength": { "default": 5, "min": 1, "max": 10, "step": 1 },
-      "water":    { "default": 100, "min": 25, "max": 240, "step": 5 },
-      "defaultTemperature": "NORMAL"
+      "strength": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "water": {
+        "default": 100,
+        "min": 25,
+        "max": 240,
+        "step": 5
+      },
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true,
+        "double": 54
+      }
     },
     {
       "code": 4,
       "name": "Cappuccino",
       "kind": "COFFEE_MILK",
-      "strength": { "default": 8, "min": 1, "max": 10, "step": 1 },
-      "water":    { "default": 60, "min": 25, "max": 240, "step": 5 },
-      "milk":     { "default": 12, "min": 1, "max": 45, "step": 1 },
-      "defaultTemperature": "NORMAL"
+      "strength": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "water": {
+        "default": 60,
+        "min": 25,
+        "max": 240,
+        "step": 5
+      },
+      "milk": {
+        "default": 12,
+        "min": 1,
+        "max": 45,
+        "step": 1
+      },
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "xtrashot": true,
+        "powder": true
+      }
     },
     {
       "code": 6,
       "name": "Espresso Macchiato",
       "kind": "COFFEE_MILK",
-      "strength": { "default": 8, "min": 1, "max": 10, "step": 1 },
-      "water":    { "default": 25, "min": 15, "max": 80, "step": 5 },
-      "milk":     { "default": 3, "min": 1, "max": 45, "step": 1 },
-      "defaultTemperature": "HIGH"
+      "strength": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "water": {
+        "default": 25,
+        "min": 15,
+        "max": 80,
+        "step": 5
+      },
+      "milk": {
+        "default": 3,
+        "min": 1,
+        "max": 45,
+        "step": 1
+      },
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true
+      }
     },
     {
       "code": 40,
       "name": "Caffé Barista",
       "kind": "COFFEE",
-      "strength": { "default": 6, "min": 1, "max": 10, "step": 1 },
-      "water":    { "default": 60, "min": 25, "max": 240, "step": 5 },
-      "bypass":   { "default": 40, "min": 0, "max": 240, "step": 5 },
-      "defaultTemperature": "NORMAL"
+      "strength": {
+        "default": 6,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "water": {
+        "default": 60,
+        "min": 25,
+        "max": 240,
+        "step": 5
+      },
+      "bypass": {
+        "default": 40,
+        "min": 0,
+        "max": 240,
+        "step": 5
+      },
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true
+      }
     },
     {
       "code": 41,
       "name": "Barista Lungo",
       "kind": "COFFEE",
-      "strength": { "default": 7, "min": 1, "max": 10, "step": 1 },
-      "water":    { "default": 120, "min": 25, "max": 240, "step": 5 },
-      "bypass":   { "default": 100, "min": 0, "max": 240, "step": 5 },
-      "defaultTemperature": "NORMAL"
+      "strength": {
+        "default": 7,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "water": {
+        "default": 120,
+        "min": 25,
+        "max": 240,
+        "step": 5
+      },
+      "bypass": {
+        "default": 100,
+        "min": 0,
+        "max": 240,
+        "step": 5
+      },
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true
+      }
     },
     {
       "code": 8,
       "name": "Milk Foam",
       "kind": "MILK",
-      "milk": { "default": 22, "min": 1, "max": 45, "step": 1 }
+      "milk": {
+        "default": 22,
+        "min": 1,
+        "max": 45,
+        "step": 1
+      }
     },
     {
       "code": 13,
       "name": "Hot Water",
       "kind": "WATER",
-      "water": { "default": 220, "min": 25, "max": 300, "step": 5 },
+      "water": {
+        "default": 220,
+        "min": 25,
+        "max": 300,
+        "step": 5
+      },
       "defaultTemperature": "NORMAL"
     },
     {
       "code": 49,
       "name": "2 Espressi",
       "kind": "COFFEE",
-      "water": { "default": 45, "min": 15, "max": 80, "step": 5 },
-      "defaultTemperature": "HIGH"
+      "water": {
+        "default": 45,
+        "min": 15,
+        "max": 80,
+        "step": 5
+      },
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true
+      }
     },
     {
       "code": 54,
       "name": "2 Coffee",
       "kind": "COFFEE",
-      "water": { "default": 100, "min": 25, "max": 240, "step": 5 },
-      "defaultTemperature": "NORMAL"
+      "water": {
+        "default": 100,
+        "min": 25,
+        "max": 240,
+        "step": 5
+      },
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true
+      }
     }
   ],
-
   "alertBits": {
-    "0":  "Insert tray",
-    "1":  "Fill water",
-    "2":  "Empty grounds",
-    "3":  "Empty tray",
-    "4":  "Insert coffee bin",
-    "5":  "Outlet missing",
-    "6":  "Rear cover missing",
-    "7":  "Milk alert",
-    "8":  "Fill system",
-    "9":  "System filling",
+    "0": "Insert tray",
+    "1": "Fill water",
+    "2": "Empty grounds",
+    "3": "Empty tray",
+    "4": "Insert coffee bin",
+    "5": "Outlet missing",
+    "6": "Rear cover missing",
+    "7": "Milk alert",
+    "8": "Fill system",
+    "9": "System filling",
     "10": "No beans",
     "11": "Welcome",
     "12": "Heating up",
@@ -138,7 +263,6 @@
     "53": "Empty grounds (RTC)",
     "54": "ML/OZ status"
   },
-
   "brewStateNames": {
     "0x01": "Insert tray",
     "0x02": "Fill water tank",
@@ -219,11 +343,17 @@
     "0xEF": "Wi-Fi confirmation",
     "0xFF": "Programming mode"
   },
-
-  "dispensingStates": ["0x34", "0x37", "0x3C", "0x41"],
-
-  "maintenanceStatusFields": ["Cleaning", "Filter change", "Descaling"],
-
+  "dispensingStates": [
+    "0x34",
+    "0x37",
+    "0x3C",
+    "0x41"
+  ],
+  "maintenanceStatusFields": [
+    "Cleaning",
+    "Filter change",
+    "Descaling"
+  ],
   "maintenanceCounterFields": [
     "Cleaning",
     "Filter change",

@@ -4,8 +4,10 @@ import {
   brewFields,
   brewPayload,
   catalogFor,
+  grinderOptions,
   pair,
   pollStatus,
+  preselectionOptions,
   productCounters,
   readStatistics,
   type Credentials,
@@ -36,7 +38,8 @@ type CustomRecipeConfig = {
   productCode?: string;
 } & Partial<Record<RecipeParameter, string>>;
 type CustomRecipe = { name: string; request: BrewRequest };
-type BrewSwitch = { product: Product } | CustomRecipe;
+type ProductSwitch = { product: Product; name: string; coldBrew?: true };
+type BrewSwitch = ProductSwitch | CustomRecipe;
 type PairingResponse =
   | { error: string }
   | {
@@ -69,7 +72,8 @@ const recipeParameters = {
   milkFoamTemperature: { field: 'milkFoamTemperature', unit: '' },
   temperature: { field: 'defaultTemperature', unit: '' },
 } as const satisfies Record<string, { field: keyof Product; unit: string }>;
-type RecipeParameter = keyof typeof recipeParameters;
+type RangeParameter = keyof typeof recipeParameters;
+type RecipeParameter = RangeParameter | 'grinderRatio' | 'preselections';
 
 function customBrewRequest(row: CustomRecipeConfig): BrewRequest {
   if (row.useJson ?? Boolean(row.recipe)) {
@@ -82,19 +86,29 @@ function customBrewRequest(row: CustomRecipeConfig): BrewRequest {
   }
   const request: BrewRequest = { productCode };
   const prefix = `${productCode}:`;
-  for (const key of Object.keys(recipeParameters) as RecipeParameter[]) {
+  const keys = [
+    ...Object.keys(recipeParameters),
+    'grinderRatio',
+    'preselections',
+  ] as RecipeParameter[];
+  for (const key of keys) {
     const option = row[key];
     // An override selected for an earlier base drink must not affect the new one.
     if (typeof option === 'string' && option.startsWith(prefix)) {
       const value = option.slice(prefix.length);
-      request[key] = key === 'temperature' ? value : Number(value);
+      request[key] =
+        key === 'preselections'
+          ? value.split('+')
+          : key === 'temperature'
+            ? value
+            : Number(value);
     }
   }
   return request;
 }
 
 function recipeOptions(
-  products: readonly Product[],
+  machine: MachineCatalog | null | undefined,
   {
     productCode,
     parameter,
@@ -105,21 +119,46 @@ function recipeOptions(
     selected?: unknown;
   },
 ) {
+  if (!machine) return [];
   if (parameter === undefined) {
-    return products
+    return machine.products
       .map(({ code, name }) => ({ value: String(code), label: name }))
       .sort((a, b) => a.label.localeCompare(b.label, 'en'));
   }
-  if (
-    typeof parameter !== 'string' ||
-    !Object.hasOwn(recipeParameters, parameter)
-  )
-    return [];
-  const product = products.find(({ code }) => String(code) === productCode);
-  const { field, unit } = recipeParameters[parameter as RecipeParameter];
-  const setting = product?.[field];
-  if (!product || setting === undefined) return [];
-
+  const product = machine.products.find(
+    ({ code }) => String(code) === productCode,
+  );
+  if (!product || typeof parameter !== 'string') return [];
+  // Admin renders the raw selection when its value is missing from the menu.
+  // A selection for another product already means "use default" when brewing.
+  const defaultOption =
+    typeof selected === 'string' &&
+    /^\d+:/.test(selected) &&
+    !selected.startsWith(`${product.code}:`)
+      ? selected
+      : 'default';
+  const profileOptions =
+    parameter === 'preselections'
+      ? preselectionOptions(product, machine)
+      : parameter === 'grinderRatio' || parameter === 'grindLevel'
+        ? grinderOptions(product, parameter)
+        : [];
+  if (profileOptions.length) {
+    return [
+      {
+        value: defaultOption,
+        label: parameter === 'preselections' ? 'None' : 'Use machine default',
+      },
+      ...profileOptions.map(({ value, label }) => ({
+        value: `${product.code}:${value}`,
+        label,
+      })),
+    ];
+  }
+  if (!Object.hasOwn(recipeParameters, parameter)) return [];
+  const { field, unit } = recipeParameters[parameter as RangeParameter];
+  const setting = product[field];
+  if (setting === undefined) return [];
   const values =
     typeof setting === 'string'
       ? ['LOW', 'NORMAL', 'HIGH']
@@ -130,14 +169,6 @@ function recipeOptions(
           (_, i) => setting.min + i * setting.step,
         );
   const defaultValue = typeof setting === 'string' ? setting : setting.default;
-  // Admin renders the raw selection when its value is missing from the menu.
-  // A selection for another product already means "use default" when brewing.
-  const defaultOption =
-    typeof selected === 'string' &&
-    /^\d+:/.test(selected) &&
-    !selected.startsWith(`${product.code}:`)
-      ? selected
-      : 'default';
   return [
     {
       value: defaultOption,
@@ -222,7 +253,7 @@ class JuraAdapter extends Adapter {
   private brewRequestedUntil?: number;
   private switchCatalog?: MachineCatalog | null;
   private countCatalog?: MachineCatalog;
-  private productSwitches?: Map<string, Product>;
+  private productSwitches?: Map<string, ProductSwitch>;
   private readonly customRecipes = new Map<string, CustomRecipe>();
 
   constructor(options: JuraAdapterOptions = {}) {
@@ -359,10 +390,32 @@ class JuraAdapter extends Adapter {
 
     const catalog = catalogFor(status.model);
     if (catalog !== this.switchCatalog) {
-      const switches = this.productStates('catalog', catalog?.products ?? []);
+      const switches = new Map<string, ProductSwitch>();
+      const products = this.productStates('catalog', catalog?.products ?? []);
+      for (const [id, product] of products)
+        switches.set(id, { product, name: product.name });
+      if (catalog) {
+        for (const [id, product] of products) {
+          if (
+            !preselectionOptions(product, catalog).some(
+              ({ value }) => value === 'coldbrew',
+            )
+          )
+            continue;
+          const coldId = id.replace('products.catalog.', 'products.catalog.Cold Brew ');
+          if (!switches.has(coldId)) {
+            switches.set(coldId, {
+              product,
+              name: `Cold Brew ${product.name}`,
+              coldBrew: true,
+            });
+          }
+        }
+        await this.removeStaleColdBrewSwitches(switches);
+      }
       await Promise.all(
-        Array.from(switches, ([id, product]) =>
-          this.syncProductSwitch(id, product),
+        Array.from(switches, ([id, recipe]) =>
+          this.syncProductSwitch(id, recipe),
         ),
       );
       this.productSwitches = switches;
@@ -394,7 +447,16 @@ class JuraAdapter extends Adapter {
       'status.dispensed': status.progress?.dispensedMl ?? null,
       'status.target': status.progress?.targetMl ?? null,
       'status.progress': status.progress?.percent ?? null,
-      'products.catalog': catalog ? JSON.stringify(catalog.products) : null,
+      'products.catalog': catalog
+        ? JSON.stringify(
+            catalog.products.map(product => ({
+              ...product,
+              availablePreselections: preselectionOptions(product, catalog).map(
+                ({ value }) => value,
+              ),
+            })),
+          )
+        : null,
     });
     this.reachable = true;
     await this.setStateChangedAsync('info.reachable', true, true);
@@ -510,14 +572,41 @@ class JuraAdapter extends Adapter {
     }
   }
 
-  private async syncProductSwitch(id: string, product: Product) {
-    const name = `Brew ${product.name}`;
-    await this.state(id, name, 'boolean', 'switch', {
-      write: true,
-      def: false,
+  private async removeStaleColdBrewSwitches(
+    switches: ReadonlyMap<string, ProductSwitch>,
+  ) {
+    const prefix = `${this.namespace}.products.catalog.`;
+    const { rows } = await this.getObjectViewAsync('system', 'state', {
+      startkey: prefix,
+      endkey: `${prefix.slice(0, -1)}/`,
     });
+    for (const { id, value } of rows) {
+      const relativeId = id.slice(this.namespace.length + 1);
+      if (
+        id.startsWith(prefix) &&
+        value.native.coldBrew === true &&
+        !value.common.custom &&
+        !value.common.dontDelete &&
+        !switches.has(relativeId)
+      ) {
+        await this.delObjectAsync(relativeId);
+      }
+    }
+  }
 
-    const legacyId = `products.catalog.${productId(product.code)}`;
+  private async syncProductSwitch(id: string, recipe: ProductSwitch) {
+    const name = `Brew ${recipe.name}`;
+    await this.state(
+      id,
+      name,
+      'boolean',
+      'switch',
+      { write: true, def: false },
+      recipe.coldBrew ? { coldBrew: true } : {},
+    );
+
+    if (recipe.coldBrew) return;
+    const legacyId = `products.catalog.${productId(recipe.product.code)}`;
     if (id !== legacyId) await this.removeLegacyState(legacyId, name, 'switch');
   }
 
@@ -583,7 +672,7 @@ class JuraAdapter extends Adapter {
         request.from,
         request.command,
         recipeOptions(
-          this.switchCatalog?.products ?? [],
+          this.switchCatalog,
           request.message ?? {},
         ),
         request.callback,
@@ -660,10 +749,8 @@ class JuraAdapter extends Adapter {
       return;
 
     const relativeId = id.slice(prefix.length);
-    const product = this.productSwitches?.get(relativeId);
-    const brewSwitch = product
-      ? { product }
-      : this.customRecipes.get(relativeId);
+    const brewSwitch =
+      this.productSwitches?.get(relativeId) ?? this.customRecipes.get(relativeId);
     if (!brewSwitch && !relativeId.startsWith('commands.')) return;
     const command = brewSwitch ? 'brew' : relativeId.slice('commands.'.length);
     if (!isCommand(command)) return;
@@ -729,27 +816,26 @@ class JuraAdapter extends Adapter {
       if (command === 'brew') {
         if (!status.alertBits?.includes(13) || recentBrew)
           throw new Error('Machine is not ready to brew');
-        const switchProduct =
-          brewSwitch && 'product' in brewSwitch
-            ? brewSwitch.product
-            : undefined;
+        const productSwitch =
+          brewSwitch && 'product' in brewSwitch ? brewSwitch : undefined;
+        const switchProduct = productSwitch?.product;
         if (switchProduct && !catalog.products.includes(switchProduct)) {
           throw new Error(
             'The machine model changed. Use a brew switch from the current product catalog',
           );
         }
-        const custom =
-          brewSwitch && 'request' in brewSwitch ? brewSwitch : undefined;
-        const request =
-          custom?.request ??
-          (switchProduct ? {} : parseBrewRequest(String(value)));
+        const request: BrewRequest = productSwitch
+          ? { preselections: productSwitch.coldBrew ? ['coldbrew'] : undefined }
+          : brewSwitch && 'request' in brewSwitch
+            ? brewSwitch.request
+            : parseBrewRequest(String(value));
         const { productCode, ...overrides } = request;
         const product =
           switchProduct ??
           catalog.products.find(entry => entry.code === productCode);
         if (!product)
           throw new Error('Use a productCode from products.catalog');
-        const payload = brewPayload(product, overrides);
+        const payload = brewPayload(product, overrides, catalog);
         await authenticated(
           this.machineHost,
           this.credentials,
@@ -765,7 +851,7 @@ class JuraAdapter extends Adapter {
           },
           options,
         );
-        result = `Machine accepted brew request for ${custom?.name ?? product.name}`;
+        result = `Machine accepted brew request for ${brewSwitch?.name ?? product.name}`;
       } else if (command === 'stop') {
         if (!status.productRunning && !recentBrew)
           throw new Error('No product is running');

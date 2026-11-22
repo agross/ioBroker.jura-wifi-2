@@ -17,7 +17,11 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "double": 49
+      }
     },
     {
       "code": 3,
@@ -35,7 +39,11 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true,
+        "double": 54
+      }
     },
     {
       "code": 4,
@@ -59,7 +67,12 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "xtrashot": true,
+        "powder": true,
+        "sweetfoam": true
+      }
     },
     {
       "code": 6,
@@ -83,7 +96,11 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "sweetfoam": true
+      }
     },
     {
       "code": 7,
@@ -107,7 +124,18 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "xtrashot": true,
+        "powder": true,
+        "sweetfoam": true
+      },
+      "milkPause": {
+        "default": 20,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      }
     },
     {
       "code": 8,
@@ -118,12 +146,24 @@
         "min": 1,
         "max": 45,
         "step": 1
+      },
+      "preselections": {
+        "sweetfoam": true
       }
     },
     {
       "code": 10,
       "name": "Milk",
-      "kind": "MILK"
+      "kind": "MILK",
+      "preselections": {
+        "sweetfoam": true
+      },
+      "milkAmount": {
+        "default": 30,
+        "min": 1,
+        "max": 45,
+        "step": 1
+      }
     },
     {
       "code": 13,
@@ -159,7 +199,10 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true
+      }
     },
     {
       "code": 41,
@@ -183,7 +226,10 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true
+      }
     },
     {
       "code": 43,
@@ -207,7 +253,11 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "sweetfoam": true
+      }
     },
     {
       "code": 44,
@@ -231,7 +281,12 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "xtrashot": true,
+        "powder": true,
+        "sweetfoam": true
+      }
     },
     {
       "code": 46,
@@ -255,7 +310,12 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "xtrashot": true,
+        "powder": true,
+        "sweetfoam": true
+      }
     },
     {
       "code": 48,

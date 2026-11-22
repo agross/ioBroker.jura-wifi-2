@@ -17,7 +17,30 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "lightbrew": true,
+        "double": 49
+      },
+      "grindLevel": {
+        "default": 5,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "04",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 3,
@@ -35,7 +58,30 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "lightbrew": true,
+        "double": 54
+      },
+      "grindLevel": {
+        "default": 1,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "00",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 43,
@@ -59,7 +105,30 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "lightbrew": true,
+        "sweetfoam": true
+      },
+      "grindLevel": {
+        "default": 5,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "04",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 40,
@@ -83,7 +152,28 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true,
+        "coldbrew": true
+      },
+      "grindLevel": {
+        "default": 5,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "04",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 41,
@@ -107,7 +197,28 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true,
+        "coldbrew": true
+      },
+      "grindLevel": {
+        "default": 1,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "00",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 4,
@@ -131,7 +242,30 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "lightbrew": true,
+        "sweetfoam": true
+      },
+      "grindLevel": {
+        "default": 5,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "04",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 7,
@@ -155,7 +289,36 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "lightbrew": true,
+        "sweetfoam": true
+      },
+      "grindLevel": {
+        "default": 5,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "milkPause": {
+        "default": 10,
+        "min": 0,
+        "max": 30,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "04",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 6,
@@ -179,7 +342,30 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "lightbrew": true,
+        "sweetfoam": true
+      },
+      "grindLevel": {
+        "default": 5,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "04",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 46,
@@ -203,7 +389,30 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "lightbrew": true,
+        "sweetfoam": true
+      },
+      "grindLevel": {
+        "default": 1,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "00",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 5,
@@ -221,7 +430,36 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "lightbrew": true,
+        "sweetfoam": true
+      },
+      "grindLevel": {
+        "default": 1,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "milkAmount": {
+        "default": 11,
+        "min": 1,
+        "max": 45,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "00",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 48,
@@ -239,7 +477,24 @@
         "max": 160,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "grindLevel": {
+        "default": 5,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "04",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 44,
@@ -263,12 +518,44 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true,
+        "coldbrew": true,
+        "lightbrew": true,
+        "sweetfoam": true
+      },
+      "grindLevel": {
+        "default": 1,
+        "min": 1,
+        "max": 5,
+        "step": 4
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "00",
+          "options": {
+            "00": "100_0",
+            "02": "50_50",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 10,
       "name": "Milk",
-      "kind": "MILK"
+      "kind": "MILK",
+      "preselections": {
+        "sweetfoam": true
+      },
+      "milkAmount": {
+        "default": 30,
+        "min": 1,
+        "max": 45,
+        "step": 1
+      }
     },
     {
       "code": 8,
@@ -279,6 +566,9 @@
         "min": 1,
         "max": 45,
         "step": 1
+      },
+      "preselections": {
+        "sweetfoam": true
       }
     },
     {
@@ -461,5 +751,12 @@
     "Cappu rinse",
     "Coffee rinse",
     "Cappu clean"
+  ],
+  "intakeF18": true,
+  "preselectionCombinations": [
+    [
+      "powder",
+      "sweetfoam"
+    ]
   ]
 }

@@ -143,6 +143,54 @@ test('brew data uses catalog defaults and rejects unsupported or out-of-step ove
   );
 });
 
+test('legacy preselections encode cold brew, ground coffee, extra shot, and double', () => {
+  const z10 = catalogFor('EF545M V02.01')!;
+  const espresso = z10.products.find(product => product.code === 2)!;
+  const cappuccino = z10.products.find(product => product.code === 4)!;
+  assert.equal(brewPayload(espresso, { preselections: ['coldbrew'] }, z10),
+    '02000809000080000100000000000000');
+  assert.equal(brewPayload(espresso, { preselections: ['powder'] }, z10),
+    '02000009000002000100000000000000');
+  assert.equal(brewPayload(cappuccino, { preselections: ['xtrashot'] }, z10),
+    '0400080C000E01020100000000000000');
+  assert.equal(brewPayload(espresso, { preselections: ['double'], water: 50 }, z10),
+    '3100080A000002000100000000000000');
+  assert.throws(() => brewPayload(cappuccino, { preselections: ['fakesweetfoam'] }, z10),
+    /Unsupported preselection/);
+  assert.throws(() => brewPayload(espresso, { preselections: ['coldbrew', 'double'] }, z10),
+    /Invalid preselection combination/);
+  assert.throws(() => brewPayload(espresso, { preselections: ['coldbrew'], temperature: 'LOW' }, z10),
+    /coldbrew conflicts with temperature/);
+  assert.throws(() => brewPayload(espresso, { preselections: 'coldbrew' }, z10),
+    /must be an array/);
+});
+
+test('IntakeF18 preselections use the mask byte and preserve the selected grind level', () => {
+  const machine = catalogFor('EF1123 V01.00')!;
+  const espresso = machine.products.find(product => product.code === 2)!;
+  assert.equal(brewPayload(espresso), '02000809000002000100000000000000');
+  assert.equal(brewPayload(espresso, { grindLevel: 1 }, machine),
+    '0200080900000200010000000000000001');
+  assert.equal(brewPayload(espresso, { preselections: ['lightbrew', 'double'], grindLevel: 1 }, machine),
+    '0200080900000200010000000000000001000048');
+  assert.equal(brewPayload(espresso, { preselections: ['coldbrew', 'strongcoldbrew'] }, machine),
+    '0200080900000200010000000000000002000090');
+  assert.throws(() => brewPayload(espresso, { preselections: ['double', 'strongcoldbrew'] }, machine),
+    /Invalid preselection combination/);
+  assert.throws(() => brewPayload(espresso, { grindLevel: 9 }, machine), /Invalid grindLevel/);
+});
+
+test('grinder ratio encodes only profile choices and shares the byte with grind level', () => {
+  const espresso = catalogFor('EF566 V01.00')!.products.find(product => product.code === 2)!;
+  assert.equal(brewPayload(espresso, { grinderRatio: 0 }), '02000809000002000100000000000000');
+  assert.equal(brewPayload(espresso, { grinderRatio: 4 }), '02040809000002000100000000000000');
+  assert.throws(() => brewPayload(espresso, { grinderRatio: 5 }), /Invalid grinderRatio/);
+  const twoGrinders = catalogFor('EF1060 V01.00')!.products.find(product => product.code === 2)!;
+  assert.equal(brewPayload(twoGrinders, { grinderRatio: 2, grindLevel: 5 }),
+    '02520609000002000100000000000000');
+  assert.throws(() => brewPayload(twoGrinders, { grinderRatio: 1 }), /Invalid grinderRatio/);
+});
+
 test('Z10 milk and foam encode independently with a legacy foam alias', () => {
   const milkcoffee = catalogFor('EF545M V02.01')!.products.find(
     product => product.code === 5,

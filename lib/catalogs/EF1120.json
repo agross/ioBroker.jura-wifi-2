@@ -17,7 +17,11 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "lightbrew": true,
+        "double": 49
+      }
     },
     {
       "code": 3,
@@ -35,7 +39,11 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "lightbrew": true,
+        "double": 54
+      }
     },
     {
       "code": 43,
@@ -59,7 +67,11 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "lightbrew": true,
+        "sweetfoam": true
+      }
     },
     {
       "code": 40,
@@ -131,7 +143,11 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "lightbrew": true,
+        "sweetfoam": true
+      }
     },
     {
       "code": 7,
@@ -155,7 +171,17 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "lightbrew": true,
+        "sweetfoam": true
+      },
+      "milkPause": {
+        "default": 30,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      }
     },
     {
       "code": 6,
@@ -179,7 +205,11 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "lightbrew": true,
+        "sweetfoam": true
+      }
     },
     {
       "code": 46,
@@ -203,7 +233,11 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "lightbrew": true,
+        "sweetfoam": true
+      }
     },
     {
       "code": 48,
@@ -232,6 +266,9 @@
         "min": 1,
         "max": 45,
         "step": 1
+      },
+      "preselections": {
+        "sweetfoam": true
       }
     },
     {
@@ -398,5 +435,12 @@
     "Cappu rinse",
     "Coffee rinse",
     "Cappu clean"
+  ],
+  "intakeF18": true,
+  "preselectionCombinations": [
+    [
+      "lightbrew",
+      "sweetfoam"
+    ]
   ]
 }

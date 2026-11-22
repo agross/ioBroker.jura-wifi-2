@@ -17,7 +17,11 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "double": 49
+      }
     },
     {
       "code": 3,
@@ -35,7 +39,11 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true,
+        "double": 54
+      }
     },
     {
       "code": 48,
@@ -77,7 +85,11 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "xtrashot": true,
+        "powder": true
+      }
     },
     {
       "code": 46,
@@ -101,7 +113,11 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "xtrashot": true,
+        "powder": true
+      }
     },
     {
       "code": 7,
@@ -125,7 +141,17 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "xtrashot": true,
+        "powder": true
+      },
+      "milkPause": {
+        "default": 30,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      }
     },
     {
       "code": 8,
@@ -172,7 +198,10 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true
+      }
     },
     {
       "code": 43,
@@ -196,7 +225,10 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true
+      }
     },
     {
       "code": 49,

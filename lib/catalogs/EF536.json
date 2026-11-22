@@ -17,7 +17,10 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 17
+      }
     },
     {
       "code": 2,
@@ -35,7 +38,10 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 18
+      }
     },
     {
       "code": 3,
@@ -53,7 +59,10 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "double": 19
+      }
     },
     {
       "code": 4,
@@ -71,7 +80,13 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "milkAmount": {
+        "default": 14,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 5,
@@ -89,7 +104,13 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "milkAmount": {
+        "default": 10,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 6,
@@ -107,7 +128,13 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "milkAmount": {
+        "default": 3,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 7,
@@ -125,7 +152,19 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkAmount": {
+        "default": 22,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 30,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      }
     },
     {
       "code": 8,
@@ -141,7 +180,13 @@
     {
       "code": 10,
       "name": "Milk Portion",
-      "kind": "MILK"
+      "kind": "MILK",
+      "milkAmount": {
+        "default": 30,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 13,
@@ -219,7 +264,13 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "milkAmount": {
+        "default": 14,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      }
     }
   ],
   "alertBits": {

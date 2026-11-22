@@ -4,7 +4,7 @@ Monitor a JURA coffee machine on your LAN and send brew, stop, and statistics
 requests from ioBroker. UDP monitoring works without credentials. TCP commands
 use the pairing token and the machine's setup PIN if one is configured.
 
-The adapter bundles all 85 Juras model catalogs. It selects the catalog from the
+The adapter bundles 88 model catalogs. It selects the catalog from the
 machine model reported over UDP, preserving model variants. A Z10 that reports
 `EF545M V02.01` uses the `EF545` catalog. Unrecognized models can still report
 identity and raw live status. Commands require a matching catalog.
@@ -99,12 +99,13 @@ setState('jura-wifi-2.0.commands.refreshStatistics', true, false);
 Brew overrides are `strength`, `water` (ml), `milkAmount` (seconds of liquid
 milk), `milkFoam` (seconds of foam), `bypass` (ml), and `temperature` (`LOW`,
 `NORMAL`, or `HIGH`), where the product supports them. The catalog's `milk`
-field describes the foam range. Existing commands can still use `milk` as an
-alias for `milkFoam`. Place a cup under the appropriate outlet before sending a
-brew command.
+field describes the foam range, or the milk range on models that use the same
+field for liquid milk. `milk` and `milkFoam` are aliases in brew commands.
+Place a cup under the appropriate outlet before sending a brew command.
 
-On the Z10, these settings are also available where the base drink supports
-them. Omitting them leaves the machine's behavior unchanged.
+These settings are also available where the catalog lists them for the base
+drink. The ranges below are for the Z10. Omit a setting to use the machine's
+default.
 
 | JSON field | Setting |
 | --- | --- |
@@ -115,6 +116,29 @@ them. Omitting them leaves the machine's behavior unchanged.
 | `milkTemperature` | Liquid milk temperature level 1–10 (experimental encoding) |
 
 For example, `{"productCode": 12, "strokes": 2}` requests a two-cycle jug.
+
+On products with two grinders, `grinderRatio` selects the left/right split.
+Codes `0` through `4` correspond to 100/0, 75/25, 50/50, 25/75, and 0/100.
+The catalog determines which splits and grind levels each product accepts.
+
+Use `preselections` to request options such as a cold Espresso or an extra
+shot in a Cappuccino. For example, on the Z10 use
+`{"productCode": 2, "preselections": ["coldbrew"]}`. The
+`availablePreselections` list in `products.catalog` gives the choices for each
+product. A `+` in that list marks a combination. Pass its names as separate
+array entries in a JSON recipe. On legacy machines, ground coffee (`powder`),
+cold or light brew, and extra shot (`xtrashot`) replace strength, temperature,
+and brewing cycles respectively. Leave those fields at their defaults when
+using the corresponding preselection.
+
+Drinks that support Cold Brew also get a catalog switch such as
+`products.catalog.Cold Brew Espresso`. The switch uses the base drink's
+defaults and selects Cold Brew. Both versions use the same machine product
+code and share its counter.
+
+Preselection encoding and the extended grind-level byte come from the J.O.E.
+app analysis and still need hardware verification.
+[Jura WiFi protocol reference](https://github.com/makefu/jura-connect/blob/3b711222b1a9d2fae248c5495db840be5d9b8c5a/docs/PROTOCOL.md#513-preselections-preselection--combination--apk-derived-unverified)
 
 ## Custom drinks
 
@@ -148,6 +172,25 @@ Run `npm run test:ci` to run the same version checks and tests as GitHub Actions
 upstream reference to check for protocol fixes, model-specific behavior, and
 extensions that may apply to this adapter.
 
+### Refresh machine catalogs
+
+1. Download the J.O.E. APK or XAPK for package `ch.toptronic.joe`. You can search
+   by package ID in the [APKPure downloader](https://apkpure.net/apk-downloader).
+   Check the package against the [official Google Play listing](https://play.google.com/store/apps/details?id=ch.toptronic.joe).
+2. Attach the download to your coding agent in this repo and ask it to run the
+   importer, review the changes under `lib/catalogs/`, and run `npm run test:ci`.
+   Keep the generated JSON in the repo and the downloaded archive outside it.
+
+   ```sh
+   python3 scripts/update-catalogs.py --apk "/path/to/J.O.E.xapk"
+   ```
+
+The importer reads `assets/documents/xml/` from the APK inside the download,
+selects the highest profile version per model, and converts product settings,
+preselections, and machine capabilities to JSON. It uses the pinned
+jura-connect XMLs for models missing from the download. Omit `--apk` to use
+the fallback for every model.
+
 ## Releasing
 
 Add the next release notes under a `### **WORK IN PROGRESS**` heading at the
@@ -175,11 +218,16 @@ for subsequent versions.
 - Add Z10 grind level, jug cycles, milk pause, and milk temperature overrides.
 - Reset brew switches after the machine accepts the request.
 - Add Z10 double-drink counters and separate liquid milk and foam parameters.
+- Refresh product settings from J.O.E. profiles and add the S10 catalog.
+- Add preselections, twin-grinder ratios, and extended grind levels to custom drinks.
+- Add Cold Brew catalog switches for drinks that support the preselection.
 
 ## License
 
-The protocol and model catalogs come from
+The protocol and original model catalogs come from
 [kykc/juras](https://github.com/kykc/juras/tree/f5d51080b504196347d3049c5910dbfd007c149f)
-under the [MIT license](LICENSE). The adapter uses the
+under the [MIT license](LICENSE). The catalog refresh uses the J.O.E. machine
+profiles mirrored by [makefu/jura-connect](https://github.com/makefu/jura-connect/tree/3b711222b1a9d2fae248c5495db840be5d9b8c5a/jura_connect/data/xml).
+The adapter uses the
 [JURA logo from Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Jura_Logo.svg).
 This is an unofficial integration.

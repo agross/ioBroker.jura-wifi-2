@@ -17,7 +17,23 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 18
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 3,
@@ -35,7 +51,23 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 19
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 4,
@@ -59,7 +91,29 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 20
+      },
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 5,
@@ -83,7 +137,41 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 21
+      },
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 10,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 6,
@@ -107,7 +195,29 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 22
+      },
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 7,
@@ -131,7 +241,47 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 23
+      },
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 4,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 10,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 18,
@@ -143,7 +293,20 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 19,
@@ -155,7 +318,20 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 20,
@@ -173,7 +349,26 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 21,
@@ -191,7 +386,38 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 10,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 22,
@@ -209,7 +435,26 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 23,
@@ -227,7 +472,44 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 4,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 10,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 48,
@@ -245,7 +527,20 @@
         "max": 160,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 8,
@@ -255,6 +550,27 @@
         "default": 20,
         "min": 0,
         "max": 120,
+        "step": 1
+      },
+      "preselections": {
+        "double": 24
+      },
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 1,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
         "step": 1
       }
     },
@@ -266,6 +582,27 @@
         "default": 0,
         "min": 0,
         "max": 120,
+        "step": 1
+      },
+      "preselections": {
+        "double": 26
+      },
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 30,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
         "step": 1
       }
     },
@@ -291,7 +628,26 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "strokes": {
+        "default": 3,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 13,
@@ -314,6 +670,24 @@
         "min": 0,
         "max": 120,
         "step": 1
+      },
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 1,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
       }
     },
     {
@@ -324,6 +698,24 @@
         "default": 0,
         "min": 0,
         "max": 120,
+        "step": 1
+      },
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 30,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
         "step": 1
       }
     },
@@ -361,7 +753,23 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 56
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 41,
@@ -385,7 +793,23 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 57
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 46,
@@ -409,7 +833,41 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 62
+      },
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 14,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 43,
@@ -433,7 +891,41 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 59
+      },
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 1,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 56,
@@ -451,7 +943,20 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 57,
@@ -469,7 +974,20 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 59,
@@ -493,7 +1011,38 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 1,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 62,
@@ -511,7 +1060,38 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkFoamTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 14,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 8,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     }
   ],
   "alertBits": {

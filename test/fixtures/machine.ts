@@ -9,6 +9,7 @@ export const token = 'a'.repeat(64);
 const clientId = '696F42726F6B6572';
 
 export class SimulatedMachine {
+  model = 'EF545M V02.01';
   online = true;
   acceptsToken = true;
   brewReply: string | null = '@tp';
@@ -57,7 +58,7 @@ export class SimulatedMachine {
       const reply = Buffer.alloc(this.brewing ? 126 : 117);
       reply.writeUInt16BE(reply.length);
       reply.writeUInt16BE(0xa5f3, 2);
-      reply.write('EF545M V02.01', 52);
+      reply.write(this.model, 52, 16, 'ascii');
       reply[109] = this.brewing ? 0 : 1;
       if (this.brewing) reply[110] = this.phaseCode;
       if (this.ready && !this.brewing) reply[111] = 4;

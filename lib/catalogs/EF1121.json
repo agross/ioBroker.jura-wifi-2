@@ -17,7 +17,11 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "lightbrew": true,
+        "double": 49
+      }
     },
     {
       "code": 3,
@@ -35,7 +39,11 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "lightbrew": true,
+        "double": 54
+      }
     },
     {
       "code": 40,
@@ -125,7 +133,10 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "lightbrew": true
+      }
     },
     {
       "code": 4,
@@ -149,7 +160,10 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "lightbrew": true
+      }
     },
     {
       "code": 7,
@@ -173,7 +187,16 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "lightbrew": true
+      },
+      "milkPause": {
+        "default": 20,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      }
     },
     {
       "code": 8,
@@ -351,5 +374,12 @@
     "Cappu rinse",
     "Coffee rinse",
     "Cappu clean"
+  ],
+  "intakeF18": true,
+  "preselectionCombinations": [
+    [
+      "lightbrew",
+      "double"
+    ]
   ]
 }

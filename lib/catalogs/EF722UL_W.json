@@ -17,7 +17,10 @@
         "max": 290,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 17
+      }
     },
     {
       "code": 2,
@@ -35,7 +38,10 @@
         "max": 290,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 18
+      }
     },
     {
       "code": 3,
@@ -53,7 +59,10 @@
         "max": 290,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 19
+      }
     },
     {
       "code": 4,
@@ -77,7 +86,22 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 20
+      },
+      "milkAmount": {
+        "default": 1,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 0,
+        "min": 0,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 6,
@@ -101,7 +125,22 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 22
+      },
+      "milkAmount": {
+        "default": 1,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 0,
+        "min": 0,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 7,
@@ -125,7 +164,22 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 23
+      },
+      "milkAmount": {
+        "default": 4,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 0,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      }
     },
     {
       "code": 8,
@@ -134,6 +188,15 @@
       "milk": {
         "default": 10,
         "min": 0,
+        "max": 120,
+        "step": 1
+      },
+      "preselections": {
+        "double": 24
+      },
+      "milkAmount": {
+        "default": 1,
+        "min": 1,
         "max": 120,
         "step": 1
       }
@@ -145,6 +208,15 @@
       "milk": {
         "default": 0,
         "min": 0,
+        "max": 120,
+        "step": 1
+      },
+      "preselections": {
+        "double": 26
+      },
+      "milkAmount": {
+        "default": 30,
+        "min": 1,
         "max": 120,
         "step": 1
       }
@@ -165,7 +237,13 @@
         "max": 290,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "strokes": {
+        "default": 3,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      }
     },
     {
       "code": 13,
@@ -231,7 +309,19 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "milkAmount": {
+        "default": 1,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 0,
+        "min": 0,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 22,
@@ -249,7 +339,19 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkAmount": {
+        "default": 1,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 0,
+        "min": 0,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 23,
@@ -267,7 +369,19 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkAmount": {
+        "default": 4,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 0,
+        "min": 0,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 24,
@@ -276,6 +390,12 @@
       "milk": {
         "default": 10,
         "min": 0,
+        "max": 120,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 1,
+        "min": 1,
         "max": 120,
         "step": 1
       }
@@ -287,6 +407,12 @@
       "milk": {
         "default": 0,
         "min": 0,
+        "max": 120,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 30,
+        "min": 1,
         "max": 120,
         "step": 1
       }
@@ -313,7 +439,16 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 62
+      },
+      "milkAmount": {
+        "default": 28,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 50,
@@ -373,7 +508,19 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkAmount": {
+        "default": 1,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 0,
+        "min": 0,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 55,
@@ -397,7 +544,19 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkAmount": {
+        "default": 6,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 0,
+        "min": 0,
+        "max": 120,
+        "step": 1
+      }
     },
     {
       "code": 58,
@@ -406,6 +565,12 @@
       "milk": {
         "default": 0,
         "min": 0,
+        "max": 120,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 50,
+        "min": 1,
         "max": 120,
         "step": 1
       }
@@ -426,7 +591,13 @@
         "max": 290,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "strokes": {
+        "default": 4,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      }
     },
     {
       "code": 61,
@@ -456,7 +627,13 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkAmount": {
+        "default": 28,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      }
     }
   ],
   "alertBits": {

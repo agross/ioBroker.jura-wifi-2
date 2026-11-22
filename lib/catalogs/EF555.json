@@ -143,7 +143,13 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "milkPause": {
+        "default": 30,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      }
     },
     {
       "code": 6,

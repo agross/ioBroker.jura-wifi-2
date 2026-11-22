@@ -21,11 +21,21 @@ export interface Product extends Partial<Record<ProductField, ProductRange>> {
   name: string;
   kind: 'COFFEE' | 'MILK' | 'COFFEE_MILK' | 'WATER';
   defaultTemperature?: Temperature;
+  preselections?: Record<string, true | number>;
+  additionalSettings?: Record<
+    string,
+    { argument: string } & (
+      | { range: ProductRange }
+      | { default: string; options: Record<string, string> }
+    )
+  >;
 }
 
 export interface MachineCatalog {
   modelId: string;
   products: Product[];
+  intakeF18?: boolean;
+  preselectionCombinations?: string[][];
   extraProductCounters?: ProductCounter[];
   alertBits: Record<number, string | undefined>;
   brewStateNames: Record<string, string | undefined>;
@@ -106,6 +116,120 @@ export const brewFields = {
   milkFoamTemperature: { offset: 13, shift: 4, overrideOnly: true },
   milkTemperature: { offset: 13, overrideOnly: true },
 } as const satisfies Record<string, BrewField>;
+
+interface Preselection {
+  label: string;
+  mask?: number;
+  legacy?: { offset: number; value: number; conflicts?: string };
+}
+
+const preselections = {
+  powder: {
+    label: 'Ground coffee',
+    mask: 0x01,
+    legacy: { offset: 2, value: 0, conflicts: 'strength' },
+  },
+  xtrashot: {
+    label: 'Extra shot',
+    mask: 0x02,
+    legacy: { offset: 7, value: 2, conflicts: 'strokes' },
+  },
+  sweetfoam: { label: 'Sweet foam', mask: 0x04 },
+  lightbrew: {
+    label: 'Light brew',
+    mask: 0x08,
+    legacy: { offset: 6, value: 0x81, conflicts: 'temperature' },
+  },
+  coldbrew: {
+    label: 'Cold brew',
+    mask: 0x10,
+    legacy: { offset: 6, value: 0x80, conflicts: 'temperature' },
+  },
+  double: { label: 'Double', mask: 0x40, legacy: { offset: 0, value: 0 } },
+  strongcoldbrew: { label: 'Strong cold brew', mask: 0x80 },
+} as const satisfies Record<string, Preselection>;
+
+type PreselectionName = keyof typeof preselections;
+type GrinderField = 'grinderRatio' | 'grindLevel';
+
+function availablePreselections(product: Product, machine: MachineCatalog) {
+  return (Object.keys(preselections) as PreselectionName[]).filter(name => {
+    const setting: Preselection = preselections[name];
+    return (
+      product.preselections?.[name] &&
+      (machine.intakeF18 ? setting.mask : setting.legacy)
+    );
+  });
+}
+
+export function preselectionOptions(product: Product, machine: MachineCatalog) {
+  const names = availablePreselections(product, machine);
+  const groups = new Set(names.map(String));
+  for (const row of machine.preselectionCombinations ?? []) {
+    let subsets: PreselectionName[][] = [[]];
+    for (const name of names.filter(name => row.includes(name))) {
+      subsets = [...subsets, ...subsets.map(subset => [...subset, name])];
+    }
+    for (const subset of subsets) {
+      if (subset.length > 1) groups.add(subset.join('+'));
+    }
+  }
+  return [...groups].map(value => ({
+    value,
+    label: value
+      .split('+')
+      .map(name => preselections[name as PreselectionName].label)
+      .join(' + '),
+  }));
+}
+
+export function grinderOptions(product: Product, field: GrinderField) {
+  const ratio = field === 'grinderRatio';
+  const setting =
+    product.additionalSettings?.[ratio ? 'GRINDER_RATIO' : 'GRINDER_FREENESS'];
+  if (setting?.argument !== (ratio ? 'F2' : 'F17') || !('options' in setting))
+    return [];
+  return Object.entries(setting.options).map(([hex, name]) => {
+    const wireValue = Number.parseInt(hex, 16);
+    return {
+      value: ratio ? wireValue : Number(name),
+      label: ratio ? name.replace('_', ' / ') : name,
+      wireValue,
+      default: hex === setting.default,
+    };
+  });
+}
+
+function requestedPreselections(
+  product: Product,
+  machine: MachineCatalog | undefined,
+  requested: unknown,
+): PreselectionName[] {
+  if (requested === undefined) return [];
+  if (
+    !Array.isArray(requested) ||
+    requested.some(name => typeof name !== 'string')
+  ) {
+    throw new Error('preselections must be an array of names');
+  }
+  const names = [...new Set<string>(requested)] as PreselectionName[];
+  if (!names.length) return [];
+  const available = machine ? availablePreselections(product, machine) : [];
+  for (const name of names) {
+    if (!available.includes(name))
+      throw new Error(`Unsupported preselection ${name} for ${product.name}`);
+  }
+  if (
+    names.length > 1 &&
+    !machine?.preselectionCombinations?.some(row =>
+      names.every(name => row.includes(name)),
+    )
+  ) {
+    throw new Error(`Invalid preselection combination for ${product.name}`);
+  }
+  return names;
+}
+
 const catalogDirectory = path.join(__dirname, '..', '..', 'lib', 'catalogs');
 const catalogIds = new Set(
   readdirSync(catalogDirectory)
@@ -381,7 +505,12 @@ export function authenticated<T>(
 
 export function brewPayload(
   product: Product,
-  overrides: Readonly<Record<string, unknown>> = {},
+  {
+    preselections: requested,
+    grinderRatio,
+    ...overrides
+  }: Readonly<Record<string, unknown>> = {},
+  machine?: MachineCatalog,
 ): string {
   if (Object.hasOwn(overrides, 'milkFoam')) {
     if (Object.hasOwn(overrides, 'milk')) {
@@ -396,10 +525,17 @@ export function brewPayload(
     }
   }
 
-  const bytes = Buffer.alloc(16);
+  const selected = requestedPreselections(product, machine, requested);
+  const masked = machine?.intakeF18 && selected.length > 0;
+  const extendedGrind = grinderOptions(product, 'grindLevel');
+  const useF17 =
+    extendedGrind.length > 0 &&
+    (Object.hasOwn(overrides, 'grindLevel') || selected.length > 0);
+  const bytes = Buffer.alloc(masked ? 20 : useF17 ? 17 : 16);
   bytes[0] = product.code;
   bytes[8] = 1;
   for (const field of Object.keys(brewFields) as ProductField[]) {
+    if (field === 'grindLevel' && useF17) continue;
     const {
       offset,
       scale = 1,
@@ -439,6 +575,34 @@ export function brewPayload(
       throw new Error(`Invalid temperature for ${product.name}`);
     }
     bytes[6] = temperatures[temperature as Temperature];
+  }
+  if (grinderRatio !== undefined) {
+    const option = grinderOptions(product, 'grinderRatio').find(
+      option => option.value === grinderRatio,
+    );
+    if (!option) throw new Error(`Invalid grinderRatio for ${product.name}`);
+    bytes[1] |= option.wireValue;
+  }
+  if (useF17) {
+    const option = extendedGrind.find(option =>
+      Object.hasOwn(overrides, 'grindLevel')
+        ? option.value === overrides.grindLevel
+        : option.default,
+    );
+    if (!option) throw new Error(`Invalid grindLevel for ${product.name}`);
+    bytes[16] = option.wireValue;
+  }
+  for (const name of selected) {
+    const selection: Preselection = preselections[name];
+    if (masked) {
+      bytes[19] |= selection.mask!;
+    } else if (selection.legacy) {
+      const { offset, value, conflicts } = selection.legacy;
+      if (conflicts && Object.hasOwn(overrides, conflicts)) {
+        throw new Error(`${name} conflicts with ${conflicts} for ${product.name}`);
+      }
+      bytes[offset] = name === 'double' ? Number(product.preselections?.double) : value;
+    }
   }
   return bytes.toString('hex').toUpperCase();
 }

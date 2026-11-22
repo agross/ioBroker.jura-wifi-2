@@ -17,7 +17,11 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "coldbrew": true,
+        "double": 49
+      }
     },
     {
       "code": 3,
@@ -35,7 +39,11 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "coldbrew": true,
+        "double": 54
+      }
     },
     {
       "code": 4,
@@ -59,7 +67,18 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "xtrashot": true,
+        "coldbrew": true,
+        "double": 20
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      }
     },
     {
       "code": 5,
@@ -83,7 +102,30 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "xtrashot": true,
+        "coldbrew": true,
+        "double": 21
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 7,
+        "min": 0,
+        "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      }
     },
     {
       "code": 7,
@@ -107,7 +149,36 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "xtrashot": true,
+        "coldbrew": true,
+        "double": 23
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 4,
+        "min": 0,
+        "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 1,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 20,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      }
     },
     {
       "code": 8,
@@ -117,6 +188,27 @@
         "default": 15,
         "min": 0,
         "max": 45,
+        "step": 1
+      },
+      "preselections": {
+        "double": 24
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 0,
+        "min": 0,
+        "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
         "step": 1
       }
     },
@@ -128,6 +220,27 @@
         "default": 0,
         "min": 0,
         "max": 45,
+        "step": 1
+      },
+      "preselections": {
+        "double": 26
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 20,
+        "min": 0,
+        "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
         "step": 1
       }
     },
@@ -165,7 +278,11 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "coldbrew": true,
+        "double": 56
+      }
     },
     {
       "code": 41,
@@ -189,7 +306,11 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "coldbrew": true,
+        "double": 57
+      }
     },
     {
       "code": 12,
@@ -207,7 +328,13 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "strokes": {
+        "default": 3,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      }
     },
     {
       "code": 46,
@@ -231,7 +358,30 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "xtrashot": true,
+        "coldbrew": true,
+        "double": 62
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 14,
+        "min": 0,
+        "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      }
     }
   ],
   "alertBits": {
@@ -392,5 +542,6 @@
     "Cappu rinse",
     "Coffee rinse",
     "Cappu clean"
-  ]
+  ],
+  "intakeF18": true
 }

@@ -17,7 +17,10 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "double": 49
+      }
     },
     {
       "code": 3,
@@ -35,7 +38,10 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "double": 54
+      }
     },
     {
       "code": 40,
@@ -59,7 +65,10 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "double": 56
+      }
     },
     {
       "code": 41,
@@ -83,7 +92,10 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "double": 57
+      }
     },
     {
       "code": 13,
@@ -143,7 +155,13 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "strokes": {
+        "default": 3,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      }
     }
   ],
   "alertBits": {
@@ -301,5 +319,6 @@
     "Filter change",
     "Descaling",
     "Coffee rinse"
-  ]
+  ],
+  "intakeF18": true
 }

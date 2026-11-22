@@ -17,7 +17,11 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "powder": true,
+        "double": 49
+      }
     },
     {
       "code": 3,
@@ -35,7 +39,11 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true,
+        "double": 54
+      }
     },
     {
       "code": 40,
@@ -59,7 +67,10 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true
+      }
     },
     {
       "code": 41,
@@ -83,7 +94,10 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true
+      }
     },
     {
       "code": 13,
@@ -125,7 +139,10 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "powder": true
+      }
     },
     {
       "code": 48,
@@ -298,5 +315,6 @@
     "Cappu rinse",
     "Coffee rinse",
     "Cappu clean"
-  ]
+  ],
+  "intakeF18": true
 }

@@ -24,6 +24,32 @@ async function startPaired(
   return { machine, ...fixture };
 }
 
+test('cold brew catalog switches use the base product code and follow machine support', async t => {
+  const cold = 'products.catalog.Cold Brew Espresso';
+  const { adapter, machine, poll } = await startPaired(t);
+  assert.equal(adapter.objects.get(espresso)?.common.name, 'Brew Espresso');
+  assert.equal(adapter.objects.get(cold)?.common.name, 'Brew Cold Brew Espresso');
+  assert.equal(adapter.objects.has('products.catalog.Cold Brew Barista Lungo'), false);
+  assert.equal(adapter.objects.has('products.counts.Cold Brew Espresso'), false);
+
+  adapter.write(cold, true);
+  await until(
+    () => adapter.states.get(cold)?.ack === true,
+    'cold brew acknowledgment',
+  );
+  assert.equal(adapter.states.get(cold)?.val, false);
+  assert.deepEqual(machine.brewRequests, ['@TP:02000809000080000100000000000000']);
+  assert.equal(
+    adapter.states.get(commandResult)?.val,
+    'Machine accepted brew request for Cold Brew Espresso',
+  );
+
+  machine.model = 'EF1091 V01.00';
+  await poll();
+  assert.equal(adapter.objects.has(cold), false);
+  assert.equal(adapter.objects.has(espresso), true);
+});
+
 test('a custom drink sends its saved recipe and resets after acceptance', async t => {
   const id = 'products.custom.My Drink';
   const { adapter, machine, poll } = await startPaired(t, [
@@ -73,6 +99,8 @@ test('a guided custom drink uses selected overrides and ignores values from a pr
       milkFoam: '5:0',
       grindLevel: '5:1',
       milkFoamTemperature: '5:8',
+      grinderRatio: '2:4',
+      preselections: '5:coldbrew',
     },
   ]);
   adapter.write(id, true);
@@ -82,7 +110,7 @@ test('a guided custom drink uses selected overrides and ignores values from a pr
   );
   assert.equal(adapter.states.get(id)?.val, false);
   assert.deepEqual(machine.brewRequests, [
-    '@TP:05100512090001000100000000800000',
+    '@TP:05100512090080000100000000800000',
   ]);
 });
 
@@ -143,6 +171,39 @@ test('Admin recipe options follow the detected catalog and the selected product'
     { value: 'default', label: 'Use machine default' },
     ...[1, 2, 3, 4, 5].map(n => ({ value: `12:${n}`, label: String(n) })),
   ]);
+  assert.deepEqual(options({ productCode: '4', parameter: 'preselections', selected: '2:double' }), [
+    { value: '2:double', label: 'None' },
+    { value: '4:powder', label: 'Ground coffee' },
+    { value: '4:xtrashot', label: 'Extra shot' },
+    { value: '4:coldbrew', label: 'Cold brew' },
+  ]);
+  assert.deepEqual(options({ productCode: '4', parameter: 'grinderRatio' }), []);
+
+  machine.model = 'EF1060 V01.00';
+  await poll();
+  assert.deepEqual(options({ productCode: '2', parameter: 'grinderRatio' }), [
+    { value: 'default', label: 'Use machine default' },
+    { value: '2:0', label: '100 / 0' },
+    { value: '2:2', label: '50 / 50' },
+    { value: '2:4', label: '0 / 100' },
+  ]);
+
+  machine.model = 'EF1123 V01.00';
+  await poll();
+  assert.deepEqual(options({ productCode: '2', parameter: 'grindLevel' }), [
+    { value: 'default', label: 'Use machine default' },
+    { value: '2:1', label: '1' },
+    { value: '2:2', label: '2' },
+  ]);
+  const preselections = options({ productCode: '2', parameter: 'preselections' });
+  assert(Array.isArray(preselections));
+  assert.deepEqual(
+    preselections.filter(option => option.value.includes('+')),
+    [
+      { value: '2:coldbrew+strongcoldbrew', label: 'Cold brew + Strong cold brew' },
+      { value: '2:lightbrew+double', label: 'Light brew + Double' },
+    ],
+  );
   assert.deepEqual(machine.brewRequests, []);
 });
 

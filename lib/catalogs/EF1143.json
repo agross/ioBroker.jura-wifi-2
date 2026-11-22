@@ -17,7 +17,38 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "coldbrew": true,
+        "powder": true,
+        "double": 18
+      },
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "04",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 3,
@@ -35,7 +66,38 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "coldbrew": true,
+        "powder": true,
+        "double": 19
+      },
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "02",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 4,
@@ -59,7 +121,44 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "coldbrew": true,
+        "powder": true,
+        "double": 20
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "02",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 5,
@@ -83,7 +182,56 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "coldbrew": true,
+        "powder": true,
+        "double": 21
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 7,
+        "min": 0,
+        "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "02",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 6,
@@ -107,7 +255,44 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "coldbrew": true,
+        "powder": true,
+        "double": 22
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "05",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 7,
@@ -131,7 +316,62 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "coldbrew": true,
+        "powder": true,
+        "double": 23
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 4,
+        "min": 0,
+        "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 20,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "02",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 8,
@@ -141,6 +381,28 @@
         "default": 10,
         "min": 0,
         "max": 45,
+        "step": 1
+      },
+      "preselections": {
+        "coldbrew": true,
+        "double": 24
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 0,
+        "min": 0,
+        "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
         "step": 1
       }
     },
@@ -152,6 +414,28 @@
         "default": 0,
         "min": 0,
         "max": 45,
+        "step": 1
+      },
+      "preselections": {
+        "coldbrew": true,
+        "double": 26
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 20,
+        "min": 0,
+        "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
         "step": 1
       }
     },
@@ -177,7 +461,39 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "strokes": {
+        "default": 3,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "02",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 13,
@@ -213,7 +529,38 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "coldbrew": true,
+        "powder": true,
+        "double": 56
+      },
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "02",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 41,
@@ -237,7 +584,38 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "coldbrew": true,
+        "powder": true,
+        "double": 57
+      },
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "02",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 43,
@@ -261,7 +639,56 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "coldbrew": true,
+        "powder": true,
+        "double": 59
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 2,
+        "min": 0,
+        "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "04",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 45,
@@ -297,7 +724,56 @@
         "max": 120,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "coldbrew": true,
+        "powder": true,
+        "double": 62
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 14,
+        "min": 0,
+        "max": 120,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "02",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 48,
@@ -315,7 +791,33 @@
         "max": 160,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "additionalSettings": {
+        "GRINDER_FREENESS": {
+          "argument": "F17",
+          "default": "04",
+          "options": {
+            "01": "0",
+            "02": "1",
+            "03": "2",
+            "04": "3",
+            "05": "4",
+            "06": "5",
+            "07": "6"
+          }
+        },
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 55,
@@ -339,7 +841,47 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "preselections": {
+        "coldbrew": true
+      },
+      "milkFoamTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkAmount": {
+        "default": 8,
+        "min": 0,
+        "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 20,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     },
     {
       "code": 50,
@@ -363,7 +905,24 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "preselections": {
+        "coldbrew": true,
+        "double": 57
+      },
+      "additionalSettings": {
+        "GRINDER_RATIO": {
+          "argument": "F2",
+          "default": "02",
+          "options": {
+            "00": "100_0",
+            "01": "75_25",
+            "02": "50_50",
+            "03": "25_75",
+            "04": "0_100"
+          }
+        }
+      }
     }
   ],
   "alertBits": {
@@ -520,5 +1079,6 @@
     "Coffee rinse",
     "Cappu rinse",
     "Cappu clean"
-  ]
+  ],
+  "intakeF18": true
 }

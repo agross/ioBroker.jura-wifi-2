@@ -137,7 +137,7 @@
         {
           "type": "selectSendTo",
           "attr": "milkFoam",
-          "label": "Milk foam (s)",
+          "label": "Milk or foam (s)",
           "command": "customRecipeOptions",
           "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"milkFoam\",\"selected\":${JSON.stringify(data.milkFoam ?? '')}}",
           "alsoDependsOn": ["productCode"],
@@ -179,9 +179,41 @@
           "dependsOnStates": {
             "catalog": ".products.catalog"
           },
-          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.grindLevel))",
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && (p.grindLevel || p.additionalSettings?.GRINDER_FREENESS?.argument === 'F17')))",
           "sm": 4,
-          "help": "1 is coarsest and 5 is finest."
+          "help": "Available levels depend on the machine and base drink."
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "grinderRatio",
+          "label": "Grinder ratio (left / right)",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"grinderRatio\",\"selected\":${JSON.stringify(data.grinderRatio ?? '')}}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.additionalSettings?.GRINDER_RATIO?.argument === 'F2'))",
+          "sm": 4
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "preselections",
+          "label": "Preselection",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"preselections\",\"selected\":${JSON.stringify(data.preselections ?? '')}}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.availablePreselections?.length))",
+          "sm": 4
         },
         {
           "type": "selectSendTo",
