@@ -1,8 +1,16 @@
 {
   "modelId": "EF545",
   "extraProductCounters": [
-    { "code": 49, "name": "2 Espressi", "slot": 18 },
-    { "code": 54, "name": "2 Coffee", "slot": 19 }
+    {
+      "code": 49,
+      "name": "2 Espressi",
+      "slot": 18
+    },
+    {
+      "code": 54,
+      "name": "2 Coffee",
+      "slot": 19
+    }
   ],
   "products": [
     {
@@ -21,7 +29,13 @@
         "max": 80,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "grindLevel": {
+        "default": 4,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      }
     },
     {
       "code": 3,
@@ -39,7 +53,13 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "grindLevel": {
+        "default": 2,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      }
     },
     {
       "code": 4,
@@ -63,7 +83,19 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "grindLevel": {
+        "default": 2,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      },
+      "milkFoamTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      }
     },
     {
       "code": 5,
@@ -93,7 +125,25 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "grindLevel": {
+        "default": 2,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkFoamTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      }
     },
     {
       "code": 6,
@@ -117,7 +167,19 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "grindLevel": {
+        "default": 4,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      },
+      "milkFoamTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      }
     },
     {
       "code": 7,
@@ -147,7 +209,31 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "grindLevel": {
+        "default": 2,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      },
+      "milkPause": {
+        "default": 20,
+        "min": 0,
+        "max": 60,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 4,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkFoamTemperature": {
+        "default": 6,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      }
     },
     {
       "code": 8,
@@ -163,6 +249,18 @@
         "default": 10,
         "min": 0,
         "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkFoamTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
         "step": 1
       }
     },
@@ -180,6 +278,18 @@
         "default": 0,
         "min": 0,
         "max": 45,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkFoamTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
         "step": 1
       }
     },
@@ -205,7 +315,19 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "grindLevel": {
+        "default": 2,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      },
+      "strokes": {
+        "default": 3,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      }
     },
     {
       "code": 13,
@@ -241,7 +363,13 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "grindLevel": {
+        "default": 2,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      }
     },
     {
       "code": 41,
@@ -265,7 +393,13 @@
         "max": 240,
         "step": 5
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "grindLevel": {
+        "default": 2,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      }
     },
     {
       "code": 43,
@@ -295,7 +429,25 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "grindLevel": {
+        "default": 4,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkFoamTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      }
     },
     {
       "code": 45,
@@ -337,7 +489,25 @@
         "max": 45,
         "step": 1
       },
-      "defaultTemperature": "NORMAL"
+      "defaultTemperature": "NORMAL",
+      "grindLevel": {
+        "default": 2,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      },
+      "milkTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      },
+      "milkFoamTemperature": {
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "step": 1
+      }
     },
     {
       "code": 48,
@@ -355,7 +525,13 @@
         "max": 160,
         "step": 5
       },
-      "defaultTemperature": "HIGH"
+      "defaultTemperature": "HIGH",
+      "grindLevel": {
+        "default": 4,
+        "min": 1,
+        "max": 5,
+        "step": 1
+      }
     }
   ],
   "alertBits": {

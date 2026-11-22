@@ -13,7 +13,7 @@ interface ProductRange {
   step: number;
 }
 
-type ProductField = 'strength' | 'water' | 'milkAmount' | 'milk' | 'bypass';
+type ProductField = keyof typeof brewFields;
 type Temperature = keyof typeof temperatures;
 
 export interface Product extends Partial<Record<ProductField, ProductRange>> {
@@ -87,6 +87,25 @@ const END = Buffer.from('\r\n');
 const LUT_A = [1, 0, 3, 2, 15, 14, 8, 10, 6, 13, 7, 12, 11, 9, 5, 4];
 const LUT_B = [9, 12, 6, 11, 10, 15, 2, 14, 13, 0, 4, 3, 1, 8, 7, 5];
 const temperatures = { LOW: 0, NORMAL: 1, HIGH: 2 };
+interface BrewField {
+  offset: number;
+  scale?: number;
+  shift?: number;
+  overrideOnly?: boolean;
+}
+
+export const brewFields = {
+  grindLevel: { offset: 1, shift: 4, overrideOnly: true },
+  strength: { offset: 2 },
+  water: { offset: 3, scale: 5 },
+  milkAmount: { offset: 4 },
+  milk: { offset: 5 },
+  strokes: { offset: 7, overrideOnly: true },
+  bypass: { offset: 9, scale: 5 },
+  milkPause: { offset: 10, overrideOnly: true },
+  milkFoamTemperature: { offset: 13, shift: 4, overrideOnly: true },
+  milkTemperature: { offset: 13, overrideOnly: true },
+} as const satisfies Record<string, BrewField>;
 const catalogDirectory = path.join(__dirname, '..', '..', 'lib', 'catalogs');
 const catalogIds = new Set(
   readdirSync(catalogDirectory)
@@ -364,13 +383,6 @@ export function brewPayload(
   product: Product,
   overrides: Readonly<Record<string, unknown>> = {},
 ): string {
-  const fields: Record<ProductField, [offset: number, scale: number]> = {
-    strength: [2, 1],
-    water: [3, 5],
-    milkAmount: [4, 1],
-    milk: [5, 1],
-    bypass: [9, 5],
-  };
   if (Object.hasOwn(overrides, 'milkFoam')) {
     if (Object.hasOwn(overrides, 'milk')) {
       throw new Error('Use only one of milkFoam and milk');
@@ -379,7 +391,7 @@ export function brewPayload(
     overrides = { ...otherOverrides, milk: milkFoam };
   }
   for (const field of Object.keys(overrides)) {
-    if (field !== 'temperature' && !Object.hasOwn(fields, field)) {
+    if (field !== 'temperature' && !Object.hasOwn(brewFields, field)) {
       throw new Error(`Unknown brew parameter: ${field}`);
     }
   }
@@ -387,12 +399,19 @@ export function brewPayload(
   const bytes = Buffer.alloc(16);
   bytes[0] = product.code;
   bytes[8] = 1;
-  for (const field of Object.keys(fields) as ProductField[]) {
-    const [offset, scale] = fields[field];
+  for (const field of Object.keys(brewFields) as ProductField[]) {
+    const {
+      offset,
+      scale = 1,
+      shift = 0,
+      overrideOnly,
+    }: BrewField = brewFields[field];
     const range = product[field];
     const value = Object.hasOwn(overrides, field)
       ? overrides[field]
-      : range?.default;
+      : overrideOnly
+        ? undefined
+        : range?.default;
     if (value === undefined) continue;
     if (
       !range ||
@@ -405,7 +424,7 @@ export function brewPayload(
     ) {
       throw new Error(`Invalid ${field} for ${product.name}`);
     }
-    bytes[offset] = value / scale;
+    bytes[offset] |= (value / scale) << shift;
   }
 
   const temperature = Object.hasOwn(overrides, 'temperature')

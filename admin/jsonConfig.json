@@ -168,6 +168,88 @@
         },
         {
           "type": "selectSendTo",
+          "attr": "grindLevel",
+          "label": "Grind level",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"grindLevel\",\"selected\":${JSON.stringify(data.grindLevel ?? '')}}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.grindLevel))",
+          "sm": 4,
+          "help": "1 is coarsest and 5 is finest."
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "strokes",
+          "label": "Brewing cycles",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"strokes\",\"selected\":${JSON.stringify(data.strokes ?? '')}}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.strokes))",
+          "sm": 4
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "milkPause",
+          "label": "Milk pause (s)",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"milkPause\",\"selected\":${JSON.stringify(data.milkPause ?? '')}}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milkPause))",
+          "sm": 4
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "milkTemperature",
+          "label": "Liquid milk temperature (experimental)",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"milkTemperature\",\"selected\":${JSON.stringify(data.milkTemperature ?? '')}}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milkTemperature))",
+          "sm": 4,
+          "help": "This setting has not been verified on a Z10."
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "milkFoamTemperature",
+          "label": "Milk foam temperature",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"milkFoamTemperature\",\"selected\":${JSON.stringify(data.milkFoamTemperature ?? '')}}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milkFoamTemperature))",
+          "sm": 4
+        },
+        {
+          "type": "selectSendTo",
           "attr": "temperature",
           "label": "Temperature",
           "command": "customRecipeOptions",

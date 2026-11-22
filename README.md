@@ -101,6 +101,19 @@ field describes the foam range. Existing commands can still use `milk` as an
 alias for `milkFoam`. Place a cup under the appropriate outlet before sending a
 brew command.
 
+On the Z10, these settings are also available where the base drink supports
+them. Omitting them leaves the machine's behavior unchanged.
+
+| JSON field | Setting |
+| --- | --- |
+| `grindLevel` | 1 (coarsest) to 5 (finest) |
+| `strokes` | 1–5 brewing cycles for Pot (Jug of coffee, product code `12`) |
+| `milkPause` | 0–60 seconds for Latte Macchiato |
+| `milkFoamTemperature` | Foam temperature level 1–10 |
+| `milkTemperature` | Liquid milk temperature level 1–10 (experimental encoding) |
+
+For example, `{"productCode": 12, "strokes": 2}` requests a two-cycle jug.
+
 ## Custom drinks
 
 In the instance settings, add a recipe under **Custom drinks** and give it a
@@ -157,6 +170,7 @@ for subsequent versions.
 
 - Add named custom drinks with saved recipe parameters and brew switches.
 - Add a catalog-backed custom drink editor to Admin, with a JSON option.
+- Add Z10 grind level, jug cycles, milk pause, and milk temperature overrides.
 - Reset brew switches after the machine accepts the request.
 - Add Z10 double-drink counters and separate liquid milk and foam parameters.
 

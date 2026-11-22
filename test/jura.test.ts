@@ -166,6 +166,50 @@ test('Z10 milk and foam encode independently with a legacy foam alias', () => {
   );
 });
 
+test('Z10 recipe overrides encode grind, jug cycles, milk pause and both milk temperatures', () => {
+  const { products } = catalogFor('EF545M V02.01')!;
+  const latte = products.find(product => product.code === 7)!;
+  const pot = products.find(product => product.code === 12)!;
+
+  assert.equal(brewPayload(latte), '07000809041602000100000000000000');
+  assert.equal(
+    brewPayload(latte, {
+      grindLevel: 5,
+      milkPause: 12,
+      milkFoamTemperature: 8,
+      milkTemperature: 10,
+    }),
+    '075008090416020001000C00008A0000',
+  );
+  assert.equal(brewPayload(latte, { milkTemperature: 10 }).slice(26, 28), '0A');
+  assert.equal(
+    brewPayload(latte, { milkFoamTemperature: 8 }).slice(26, 28),
+    '80',
+  );
+  assert.equal(
+    brewPayload(pot, { strokes: 2 }),
+    '0C00050E00000102010A000000000000',
+  );
+  assert.throws(
+    () => brewPayload(latte, { grindLevel: 0 }),
+    /Invalid grindLevel/,
+  );
+  assert.throws(
+    () => brewPayload(latte, { milkPause: 61 }),
+    /Invalid milkPause/,
+  );
+  assert.throws(
+    () => brewPayload(latte, { milkFoamTemperature: 11 }),
+    /Invalid milkFoamTemperature/,
+  );
+  assert.throws(
+    () => brewPayload(latte, { milkTemperature: 0 }),
+    /Invalid milkTemperature/,
+  );
+  assert.throws(() => brewPayload(pot, { strokes: 6 }), /Invalid strokes/);
+  assert.throws(() => brewPayload(latte, { strokes: 2 }), /Invalid strokes/);
+});
+
 test('TCP pairs, authenticates and sends brew and stop on separate sessions', async t => {
   const token = 'a'.repeat(64);
   const seen: (string | null)[] = [];

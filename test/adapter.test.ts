@@ -71,6 +71,8 @@ test('a guided custom drink uses selected overrides and ignores values from a pr
       water: 'default',
       milkAmount: '5:9',
       milkFoam: '5:0',
+      grindLevel: '5:1',
+      milkFoamTemperature: '5:8',
     },
   ]);
   adapter.write(id, true);
@@ -80,7 +82,7 @@ test('a guided custom drink uses selected overrides and ignores values from a pr
   );
   assert.equal(adapter.states.get(id)?.val, false);
   assert.deepEqual(machine.brewRequests, [
-    '@TP:05000512090001000100000000000000',
+    '@TP:05100512090001000100000000800000',
   ]);
 });
 
@@ -137,6 +139,10 @@ test('Admin recipe options follow the detected catalog and the selected product'
   });
   assert(Array.isArray(water));
   assert.deepEqual(water[0], { value: '43:45', label: 'Use default (90 ml)' });
+  assert.deepEqual(options({ productCode: '12', parameter: 'strokes' }), [
+    { value: 'default', label: 'Use machine default' },
+    ...[1, 2, 3, 4, 5].map(n => ({ value: `12:${n}`, label: String(n) })),
+  ]);
   assert.deepEqual(machine.brewRequests, []);
 });
 

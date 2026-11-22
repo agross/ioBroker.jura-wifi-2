@@ -1,6 +1,7 @@
 import { Adapter, type AdapterOptions } from '@iobroker/adapter-core';
 import {
   authenticated,
+  brewFields,
   brewPayload,
   catalogFor,
   pair,
@@ -56,11 +57,16 @@ function parseBrewRequest(json: string): BrewRequest {
 }
 
 const recipeParameters = {
+  grindLevel: { field: 'grindLevel', unit: '' },
   strength: { field: 'strength', unit: '' },
   water: { field: 'water', unit: ' ml' },
   milkAmount: { field: 'milkAmount', unit: ' s' },
   milkFoam: { field: 'milk', unit: ' s' },
   bypass: { field: 'bypass', unit: ' ml' },
+  strokes: { field: 'strokes', unit: '' },
+  milkPause: { field: 'milkPause', unit: ' s' },
+  milkTemperature: { field: 'milkTemperature', unit: '' },
+  milkFoamTemperature: { field: 'milkFoamTemperature', unit: '' },
   temperature: { field: 'defaultTemperature', unit: '' },
 } as const satisfies Record<string, { field: keyof Product; unit: string }>;
 type RecipeParameter = keyof typeof recipeParameters;
@@ -133,7 +139,13 @@ function recipeOptions(
       ? selected
       : 'default';
   return [
-    { value: defaultOption, label: `Use default (${defaultValue}${unit})` },
+    {
+      value: defaultOption,
+      label:
+        field !== 'defaultTemperature' && 'overrideOnly' in brewFields[field]
+          ? 'Use machine default'
+          : `Use default (${defaultValue}${unit})`,
+    },
     ...values.map(value => ({
       value: `${product.code}:${value}`,
       label: `${value}${unit}`,
