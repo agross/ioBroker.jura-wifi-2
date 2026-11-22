@@ -14,6 +14,7 @@ export class SimulatedMachine {
   brewReply: string | null = '@tp';
   ready = true;
   brewing = false;
+  idleAlertBits: number[] = [];
   polls = 0;
   readonly requests: string[] = [];
   private waiting?: (socket: Socket) => void;
@@ -58,6 +59,11 @@ export class SimulatedMachine {
       reply.write('EF545M V02.01', 52);
       reply[109] = this.brewing ? 0 : 1;
       if (this.ready && !this.brewing) reply[111] = 4;
+      if (!this.brewing) {
+        for (const bit of this.idleAlertBits) {
+          reply[110 + (bit >> 3)] |= 0x80 >> (bit & 7);
+        }
+      }
       this.udp.send(reply, remote.port, remote.address);
     });
     this.udp.bind(0, '127.0.0.1');

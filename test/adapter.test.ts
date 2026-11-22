@@ -324,6 +324,29 @@ test('an unpaired machine is reachable without an authenticated connection', asy
   assert.deepEqual(machine.requests, []);
 });
 
+test('the milk cleaning indicator follows the active cleaning alert', async t => {
+  const machine = new SimulatedMachine();
+  const { adapter, poll } = await startAdapter(t, machine, {
+    ...config,
+    token: '',
+  });
+  const indicator = 'status.milkCleaningNecessary';
+  machine.idleAlertBits = [41];
+  await poll();
+  assert.equal(adapter.states.get(indicator)?.val, true);
+  assert.equal(adapter.states.get(indicator)?.ack, true);
+
+  machine.brewing = true;
+  await poll();
+  assert.equal(adapter.states.get('status.activeAlerts')?.val, null);
+  assert.equal(adapter.states.get(indicator)?.val, false);
+
+  machine.brewing = false;
+  machine.idleAlertBits = [42];
+  await poll();
+  assert.equal(adapter.states.get(indicator)?.val, false);
+});
+
 test('a paired machine reconnects after an outage without pairing again', async t => {
   const machine = new SimulatedMachine();
   const { adapter, now, poll } = await startAdapter(t, machine, config);

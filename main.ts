@@ -184,6 +184,11 @@ const statusStates = {
   'status.productRunning': ['Product running', 'boolean', 'indicator.working'],
   'status.ready': ['Coffee ready', 'boolean', 'indicator'],
   'status.activeAlerts': ['Active idle flags', 'string', 'json'],
+  'status.milkCleaningNecessary': [
+    'Milk cleaning necessary',
+    'boolean',
+    'indicator',
+  ],
   'status.payload': ['Raw UDP status payload', 'string', 'text'],
   'status.phaseCode': ['Product phase code', 'number', 'value'],
   'status.phase': ['Product phase', 'string', 'text'],
@@ -376,6 +381,10 @@ class JuraAdapter extends Adapter {
         ? (status.alertBits?.includes(13) ?? false)
         : null,
       'status.activeAlerts': alerts ? JSON.stringify(alerts) : null,
+      'status.milkCleaningNecessary':
+        alerts?.some(({ name }) =>
+          /^cappu clean(?:ing| alert)$/i.test(name ?? ''),
+        ) ?? false,
       'status.payload': status.payload,
       'status.phaseCode': status.progress?.code ?? null,
       'status.phase': status.progress?.phase ?? null,
