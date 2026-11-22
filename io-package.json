@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "jura-wifi-2",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "news": {
+      "0.3.4": {
+        "en": "Document how to install the adapter from npm through ioBroker Admin.",
+        "de": "Anleitung zur Adapterinstallation von npm über ioBroker Admin.",
+        "ru": "Документируйте, как установить адаптер из npm через администратор ioBroker.",
+        "pt": "Documente como instalar o adaptador do npm ao ioBroker Admin.",
+        "nl": "Documenteer hoe u de adapter installeert vanuit npm via ioBroker Admin.",
+        "fr": "Expliquez comment installer l'adaptateur depuis NPM via ioBroker Admin.",
+        "it": "Documenta come installare l'adattatore da npm tramite ioBroker Admin.",
+        "es": "Documente cómo instalar el adaptador de npm a través de ioBroker Admin.",
+        "pl": "Udokumentuj, jak zainstalować adapter z npm przez administratora ioBroker.",
+        "uk": "Документуйте, як встановити адаптер з npm через ioBroker Admin.",
+        "zh-cn": "记录如何通过 ioBroker 管理员从 npm 安装适配器。"
+      },
       "0.3.3": {
         "en": "Allow editing custom drinks when the machine is off",
         "de": "Eigene Getränke auch bei ausgeschalteter Maschine bearbeiten"

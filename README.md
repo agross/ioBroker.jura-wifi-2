@@ -212,7 +212,7 @@ for subsequent versions.
 
 ## Changelog
 
-### **WORK IN PROGRESS**
+### 0.3.4 (2026-11-22)
 
 - Document how to install the adapter from npm through ioBroker Admin.
 
