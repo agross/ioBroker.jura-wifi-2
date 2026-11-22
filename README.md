@@ -12,13 +12,12 @@ identity and raw live status. Commands require a matching catalog.
 ## Install
 
 The package requires Node.js 22 or later, js-controller 7 or later, and Admin 7
-or later. Run `npm ci` and `npm pack` in the source directory. Copy the
-resulting tarball to the ioBroker host and run:
+or later.
 
-```sh
-iobroker url /absolute/path/to/iobroker.jura-wifi-2-0.3.2.tgz jura-wifi-2
-iobroker add jura-wifi-2
-```
+1. In ioBroker Admin, enable expert mode and open **Adapters**.
+2. Click the Octocat icon to open the installation dialog, then select **Custom**.
+3. Enter `iobroker.jura-wifi-2@latest` in the **URL** field to install from npm.
+4. Leave **Create instance if it does not exist yet** checked and click **Install**.
 
 Open the instance settings in Admin. Enter the machine's IP address or IPv4
 hostname and a polling interval. Save the settings and enable the instance.
