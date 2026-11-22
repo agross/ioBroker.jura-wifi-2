@@ -324,6 +324,28 @@ test('an unpaired machine is reachable without an authenticated connection', asy
   assert.deepEqual(machine.requests, []);
 });
 
+test('milk cleaning activity has a separate indicator and preserves the reported phase', async t => {
+  const machine = new SimulatedMachine();
+  const { adapter, poll } = await startAdapter(t, machine, {
+    ...config,
+    token: '',
+  });
+  await poll();
+  assert.equal(adapter.states.get('status.milkCleaning')?.val, false);
+
+  machine.brewing = true;
+  machine.phaseCode = 0xff;
+  await poll();
+  assert.equal(adapter.states.get('status.phase')?.val, 'P_Mode');
+  assert.equal(adapter.states.get('status.phaseCode')?.val, 255);
+  assert.equal(adapter.states.get('status.milkCleaning')?.val, true);
+  assert.equal(adapter.states.get('status.milkCleaningNecessary')?.val, false);
+
+  machine.phaseCode = 0x34;
+  await poll();
+  assert.equal(adapter.states.get('status.milkCleaning')?.val, false);
+});
+
 test('the milk cleaning indicator follows the active cleaning alert', async t => {
   const machine = new SimulatedMachine();
   const { adapter, poll } = await startAdapter(t, machine, {

@@ -48,6 +48,7 @@ For instance `jura-wifi-2.0`:
 | `info.name`, `info.model`, `info.module`, `info.articleNumber` | Identity and firmware reported by the machine |
 | `status.ready`, `status.productRunning` | Ready flag and product activity |
 | `status.activeAlerts` | JSON array of active idle flags with bit numbers and catalog labels, or null while a product runs |
+| `status.milkCleaning` | True while the Z10 reports the milk-cleaning phase (`P_Mode`) |
 | `status.milkCleaningNecessary` | True while the active alerts include the milk-cleaning request |
 | `status.payload` | Latest raw UDP status payload as hex |
 | `status.phaseCode`, `status.phase` | Current product phase. Cleared when idle |

@@ -184,6 +184,7 @@ const statusStates = {
   'status.productRunning': ['Product running', 'boolean', 'indicator.working'],
   'status.ready': ['Coffee ready', 'boolean', 'indicator'],
   'status.activeAlerts': ['Active idle flags', 'string', 'json'],
+  'status.milkCleaning': ['Milk cleaning', 'boolean', 'indicator'],
   'status.milkCleaningNecessary': [
     'Milk cleaning necessary',
     'boolean',
@@ -381,6 +382,8 @@ class JuraAdapter extends Adapter {
         ? (status.alertBits?.includes(13) ?? false)
         : null,
       'status.activeAlerts': alerts ? JSON.stringify(alerts) : null,
+      'status.milkCleaning':
+        catalog?.modelId === 'EF545' && status.progress?.code === 0xff,
       'status.milkCleaningNecessary':
         alerts?.some(({ name }) =>
           /^cappu clean(?:ing| alert)$/i.test(name ?? ''),

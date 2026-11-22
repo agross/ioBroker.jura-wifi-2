@@ -14,6 +14,7 @@ export class SimulatedMachine {
   brewReply: string | null = '@tp';
   ready = true;
   brewing = false;
+  phaseCode = 0;
   idleAlertBits: number[] = [];
   polls = 0;
   readonly requests: string[] = [];
@@ -58,6 +59,7 @@ export class SimulatedMachine {
       reply.writeUInt16BE(0xa5f3, 2);
       reply.write('EF545M V02.01', 52);
       reply[109] = this.brewing ? 0 : 1;
+      if (this.brewing) reply[110] = this.phaseCode;
       if (this.ready && !this.brewing) reply[111] = 4;
       if (!this.brewing) {
         for (const bit of this.idleAlertBits) {
