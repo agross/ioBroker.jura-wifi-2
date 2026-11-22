@@ -121,6 +121,35 @@ Run `npm run build` to compile the TypeScript sources. Run `npm test` to run the
 protocol and adapter integration tests. The adapter tests use an in-memory
 ioBroker state store, a controlled clock, and a simulated machine on loopback
 sockets. `npm pack` builds and packages the adapter as CommonJS.
+Run `npm run test:ci` to run the same version checks and tests as GitHub Actions.
+
+## Releasing
+
+Add the next release notes under a `### **WORK IN PROGRESS**` heading at the
+top of the changelog. From a
+clean, up-to-date `main`, preview the bump with
+`npm run release patch -- --dry`. Run `npm run release patch` to release, or
+choose `minor` or `major`. The release script updates the package versions and
+ioBroker news, then pushes the release commit and `v` tag. The **Test and
+Release** workflow tests the tagged commit, publishes it to npm, and creates a
+GitHub Release. Prerelease tags publish to npm's `next` dist-tag.
+
+For the first npm publication, run `npm ci`, `npm run build`, and
+`npm publish --access public` from a clean checkout with a maintainer npm
+account. Then configure [npm Trusted
+Publishing](https://docs.npmjs.com/trusted-publishers/) for
+`agross/ioBroker.jura-wifi-2` and `test-and-release.yml`. Use the release script
+for subsequent versions.
+
+## Changelog
+
+### **WORK IN PROGRESS**
+
+- Add named custom drinks with saved recipe parameters and brew switches.
+- Reset brew switches after the machine accepts the request.
+- Add Z10 double-drink counters and separate liquid milk and foam parameters.
+
+## License
 
 The protocol and model catalogs come from
 [kykc/juras](https://github.com/kykc/juras/tree/f5d51080b504196347d3049c5910dbfd007c149f)
