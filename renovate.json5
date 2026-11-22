@@ -5,6 +5,7 @@
     ':disableDigestUpdates',
     ':disableRateLimiting',
     ':enableVulnerabilityAlerts',
+    ':maintainLockFilesWeekly',
     ':rebaseStalePrs',
     ':semanticCommitsDisabled',
   ],
