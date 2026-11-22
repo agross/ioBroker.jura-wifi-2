@@ -114,16 +114,14 @@ test('a guided custom drink uses selected overrides and ignores values from a pr
   ]);
 });
 
-test('Admin recipe options follow the detected catalog and the selected product', async t => {
-  const machine = new SimulatedMachine();
-  const { adapter, poll } = await startAdapter(t, machine, config);
-  function options(
-    message: {
-      productCode?: string;
-      parameter?: string;
-      selected?: string;
-    } = {},
-  ) {
+function recipeOptionsFrom(
+  adapter: Awaited<ReturnType<typeof startAdapter>>['adapter'],
+) {
+  return (message: {
+    productCode?: string;
+    parameter?: string;
+    selected?: string;
+  } = {}) => {
     adapter.emit('message', {
       command: 'customRecipeOptions',
       from: 'system.adapter.admin.0',
@@ -131,7 +129,13 @@ test('Admin recipe options follow the detected catalog and the selected product'
       callback: { id: 1, ack: false, time: 0, message },
     });
     return adapter.replies.at(-1)?.data;
-  }
+  };
+}
+
+test('Admin recipe options follow the detected catalog and the selected product', async t => {
+  const machine = new SimulatedMachine();
+  const { adapter, poll } = await startAdapter(t, machine, config);
+  const options = recipeOptionsFrom(adapter);
 
   assert.deepEqual(options(), []);
   await poll();
@@ -205,6 +209,38 @@ test('Admin recipe options follow the detected catalog and the selected product'
     ],
   );
   assert.deepEqual(machine.brewRequests, []);
+});
+
+test('Admin can edit saved tea water after a restart with the machine off', async t => {
+  const machine = new SimulatedMachine();
+  machine.online = false;
+  const { adapter, poll } = await startAdapter(t, machine, config, store => {
+    store.write('info.model', 'EF545M V02.01', true);
+  });
+  await poll();
+  assert.equal(adapter.states.get('info.reachable')?.val, false);
+
+  const options = recipeOptionsFrom(adapter);
+  const products = options();
+  assert(Array.isArray(products));
+  assert.deepEqual(products.find(option => option.value === '13'), {
+    value: '13',
+    label: 'Hotwater Portion',
+  });
+  const water = options({
+    productCode: '13',
+    parameter: 'water',
+    selected: '13:200',
+  });
+  assert(Array.isArray(water));
+  assert.deepEqual(water.find(option => option.value === '13:200'), {
+    value: '13:200',
+    label: '200 ml',
+  });
+  assert.deepEqual(water.find(option => option.value === '13:205'), {
+    value: '13:205',
+    label: '205 ml',
+  });
 });
 
 test('invalid custom drink parameters leave the switch unacknowledged', async t => {

@@ -82,7 +82,7 @@
           "noTranslation": true,
           "manual": false,
           "hidden": "data.useJson ?? !!data.recipe",
-          "help": "Turn on the machine and reopen these settings if the list is empty.",
+          "help": "If the machine has never been detected, turn it on and reopen these settings.",
           "newLine": true,
           "sm": 12
         },

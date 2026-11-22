@@ -145,7 +145,9 @@ app analysis and still need hardware verification.
 In the instance settings, add a recipe under **Custom drinks** and give it a
 name, such as `My Drink`. Once the adapter has detected the machine, choose a
 **Base drink** and select any overrides. Each setting starts with the catalog
-default. Overrides apply only to the base drink they were selected for.
+default. Overrides apply only to the base drink they were selected for. The
+editor uses the last detected model when the machine is off, even after an
+adapter restart.
 
 If the catalog is unavailable, enable **Edit recipe as JSON** and enter the
 same JSON you would send to `commands.brew`. Existing JSON recipes open in

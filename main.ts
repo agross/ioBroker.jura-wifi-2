@@ -252,6 +252,7 @@ class JuraAdapter extends Adapter {
   private isAuthenticated = false;
   private brewRequestedUntil?: number;
   private switchCatalog?: MachineCatalog | null;
+  private lastKnownCatalog: MachineCatalog | null = null;
   private countCatalog?: MachineCatalog;
   private productSwitches?: Map<string, ProductSwitch>;
   private readonly customRecipes = new Map<string, CustomRecipe>();
@@ -342,6 +343,10 @@ class JuraAdapter extends Adapter {
     for (const [id, [name, type, role, unit]] of Object.entries(statusStates)) {
       await this.state(id, name, type, role, unit ? { unit } : {});
     }
+    const lastModel = (await this.getStateAsync('info.model'))?.val;
+    if (typeof lastModel === 'string')
+      this.lastKnownCatalog = catalogFor(lastModel);
+
     for (const [command, [name, type, role, idle]] of Object.entries(
       commands,
     )) {
@@ -672,7 +677,10 @@ class JuraAdapter extends Adapter {
         request.from,
         request.command,
         recipeOptions(
-          this.switchCatalog,
+          // Before the first successful poll, Admin can use the last detected model.
+          this.switchCatalog === undefined
+            ? this.lastKnownCatalog
+            : this.switchCatalog,
           request.message ?? {},
         ),
         request.callback,
