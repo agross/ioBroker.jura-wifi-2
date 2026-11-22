@@ -123,6 +123,10 @@ ioBroker state store, a controlled clock, and a simulated machine on loopback
 sockets. `npm pack` builds and packages the adapter as CommonJS.
 Run `npm run test:ci` to run the same version checks and tests as GitHub Actions.
 
+[makefu/jura-connect](https://github.com/makefu/jura-connect) is another
+upstream reference to check for protocol fixes, model-specific behavior, and
+extensions that may apply to this adapter.
+
 ## Releasing
 
 Add the next release notes under a `### **WORK IN PROGRESS**` heading at the
