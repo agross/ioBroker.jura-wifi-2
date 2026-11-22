@@ -108,6 +108,7 @@ export class SimulatedMachine {
     socket.on('close', () => this.clients.delete(socket));
     let bytes = Buffer.alloc(0);
     socket.on('data', chunk => {
+      assert(Buffer.isBuffer(chunk));
       bytes = Buffer.concat([bytes, chunk]);
       let end;
       while ((end = bytes.indexOf('\r\n')) !== -1) {
