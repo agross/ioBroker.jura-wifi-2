@@ -215,6 +215,7 @@ for subsequent versions.
 
 ### 0.3.3 (2026-11-22)
 
+- First release on [npm](https://www.npmjs.com/package/iobroker.jura-wifi-2/v/0.3.3).
 - Keep the custom drink editor usable after an adapter restart with the machine off.
 
 ### 0.3.2 (2026-11-22)
