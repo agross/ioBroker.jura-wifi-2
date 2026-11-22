@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "jura-wifi-2",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "news": {
+      "0.3.3": {
+        "en": "Allow editing custom drinks when the machine is off",
+        "de": "Eigene Getränke auch bei ausgeschalteter Maschine bearbeiten"
+      },
       "0.3.2": {
         "en": "Convert adapter and tests to TypeScript",
         "de": "Adapter und Tests auf TypeScript umstellen"

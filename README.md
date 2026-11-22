@@ -213,7 +213,11 @@ for subsequent versions.
 
 ## Changelog
 
-### **WORK IN PROGRESS**
+### 0.3.3 (2026-11-22)
+
+- Keep the custom drink editor usable after an adapter restart with the machine off.
+
+### 0.3.2 (2026-11-22)
 
 - Add named custom drinks with saved recipe parameters and brew switches.
 - Add a catalog-backed custom drink editor to Admin, with a JSON option.

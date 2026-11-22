@@ -1,6 +1,6 @@
 {
   "name": "iobroker.jura-wifi-2",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Control and monitor a JURA coffee machine over WiFi Smart Connect v2",
   "license": "MIT",
   "author": "Alexander Groß",
