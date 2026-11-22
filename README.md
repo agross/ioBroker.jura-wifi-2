@@ -103,8 +103,14 @@ brew command.
 
 ## Custom drinks
 
-In the instance settings, add a row under **Custom drinks**. Give it a name,
-such as `My Drink`, and enter the same JSON you would send to `commands.brew`.
+In the instance settings, add a recipe under **Custom drinks** and give it a
+name, such as `My Drink`. Once the adapter has detected the machine, choose a
+**Base drink** and select any overrides. Each setting starts with the catalog
+default. Changes to the base drink reset the overrides.
+
+If the catalog is unavailable, enable **Edit recipe as JSON** and enter the
+same JSON you would send to `commands.brew`. Existing JSON recipes open in
+that editor automatically.
 
 ```json
 {"productCode": 5, "water": 90, "milkAmount": 9, "milkFoam": 2}
@@ -150,6 +156,7 @@ for subsequent versions.
 ### **WORK IN PROGRESS**
 
 - Add named custom drinks with saved recipe parameters and brew switches.
+- Add a catalog-backed custom drink editor to Admin, with a JSON option.
 - Reset brew switches after the machine accepts the request.
 - Add Z10 double-drink counters and separate liquid milk and foam parameters.
 

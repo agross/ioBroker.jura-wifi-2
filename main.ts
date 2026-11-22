@@ -21,13 +21,19 @@ declare global {
       pollInterval?: number;
       setupPin?: string;
       token?: string;
-      customRecipes?: { name: string; recipe: string }[];
+      customRecipes?: CustomRecipeConfig[];
     }
   }
 }
 
 type ProductIdentity = Pick<Product, 'code' | 'name'>;
 type BrewRequest = Record<string, unknown>;
+type CustomRecipeConfig = {
+  name: string;
+  recipe?: string;
+  useJson?: boolean;
+  productCode?: string;
+} & Partial<Record<RecipeParameter, string>>;
 type CustomRecipe = { name: string; request: BrewRequest };
 type BrewSwitch = { product: Product } | CustomRecipe;
 type PairingResponse =
@@ -47,6 +53,77 @@ function parseBrewRequest(json: string): BrewRequest {
     throw new Error('Brew request must be a JSON object');
   }
   return request as BrewRequest;
+}
+
+const recipeParameters = {
+  strength: { field: 'strength', unit: '' },
+  water: { field: 'water', unit: ' ml' },
+  milkAmount: { field: 'milkAmount', unit: ' s' },
+  milkFoam: { field: 'milk', unit: ' s' },
+  bypass: { field: 'bypass', unit: ' ml' },
+  temperature: { field: 'defaultTemperature', unit: '' },
+} as const satisfies Record<string, { field: keyof Product; unit: string }>;
+type RecipeParameter = keyof typeof recipeParameters;
+
+function customBrewRequest(row: CustomRecipeConfig): BrewRequest {
+  if (row.useJson ?? Boolean(row.recipe)) {
+    return parseBrewRequest(row.recipe ?? '');
+  }
+
+  const productCode = Number(row.productCode);
+  if (!Number.isInteger(productCode) || productCode <= 0) {
+    throw new Error('Select a base drink or enter a JSON recipe');
+  }
+  const request: BrewRequest = { productCode };
+  const prefix = `${productCode}:`;
+  for (const key of Object.keys(recipeParameters) as RecipeParameter[]) {
+    const option = row[key];
+    // An override selected for an earlier base drink must not affect the new one.
+    if (typeof option === 'string' && option.startsWith(prefix)) {
+      const value = option.slice(prefix.length);
+      request[key] = key === 'temperature' ? value : Number(value);
+    }
+  }
+  return request;
+}
+
+function recipeOptions(
+  products: readonly Product[],
+  { productCode, parameter }: { productCode?: unknown; parameter?: unknown },
+) {
+  if (parameter === undefined) {
+    return products.map(({ code, name }) => ({
+      value: String(code),
+      label: name,
+    }));
+  }
+  if (
+    typeof parameter !== 'string' ||
+    !Object.hasOwn(recipeParameters, parameter)
+  )
+    return [];
+  const product = products.find(({ code }) => String(code) === productCode);
+  const { field, unit } = recipeParameters[parameter as RecipeParameter];
+  const setting = product?.[field];
+  if (!product || setting === undefined) return [];
+
+  const values =
+    typeof setting === 'string'
+      ? ['LOW', 'NORMAL', 'HIGH']
+      : Array.from(
+          {
+            length: Math.floor((setting.max - setting.min) / setting.step) + 1,
+          },
+          (_, i) => setting.min + i * setting.step,
+        );
+  const defaultValue = typeof setting === 'string' ? setting : setting.default;
+  return [
+    { value: 'default', label: `Use default (${defaultValue}${unit})` },
+    ...values.map(value => ({
+      value: `${product.code}:${value}`,
+      label: `${value}${unit}`,
+    })),
+  ];
 }
 
 const commands = {
@@ -353,7 +430,7 @@ class JuraAdapter extends Adapter {
       }
       seen.add(id);
       try {
-        const request = parseBrewRequest(row.recipe);
+        const request = customBrewRequest(row);
         if (!Number.isInteger(request.productCode)) {
           throw new Error('Use a numeric productCode from products.catalog');
         }
@@ -458,11 +535,23 @@ class JuraAdapter extends Adapter {
 
   private async onMessage(request: ioBroker.Message) {
     if (
-      request?.command !== 'pair' ||
-      !request.callback ||
+      !request?.callback ||
       !/^system\.adapter\.admin\.\d+$/.test(request.from)
     )
       return;
+    if (request.command === 'customRecipeOptions') {
+      this.sendTo(
+        request.from,
+        request.command,
+        recipeOptions(
+          this.switchCatalog?.products ?? [],
+          request.message ?? {},
+        ),
+        request.callback,
+      );
+      return;
+    }
+    if (request.command !== 'pair') return;
     const callback = request.callback;
     const reply = (result: PairingResponse) =>
       this.sendTo(request.from, request.command, result, callback);

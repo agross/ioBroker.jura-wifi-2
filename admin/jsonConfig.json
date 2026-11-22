@@ -48,19 +48,181 @@
       "text": "Enable the instance, enter the address, then click Pair and confirm on the machine display. Leave the PIN blank if PIN protection is off.",
       "sm": 9
     },
+    "_customDrinkInstructions": {
+      "type": "staticText",
+      "text": "Choose a base drink from the detected machine, then change any settings you want to override. Use the JSON editor when the catalog is unavailable.",
+      "newLine": true,
+      "sm": 12
+    },
     "customRecipes": {
-      "type": "table",
+      "type": "accordion",
       "label": "Custom drinks",
+      "titleAttr": "name",
       "newLine": true,
       "sm": 12,
-      "uniqueColumns": ["name"],
       "items": [
-        { "type": "text", "attr": "name", "title": "Name", "width": "30%" },
+        {
+          "type": "text",
+          "attr": "name",
+          "label": "Drink name",
+          "sm": 8
+        },
+        {
+          "type": "checkbox",
+          "attr": "useJson",
+          "label": "Edit recipe as JSON",
+          "defaultFunc": "!!data.recipe",
+          "sm": 4
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "productCode",
+          "label": "Base drink",
+          "command": "customRecipeOptions",
+          "noTranslation": true,
+          "manual": false,
+          "hidden": "data.useJson ?? !!data.recipe",
+          "help": "Turn on the machine and reopen these settings if the list is empty.",
+          "newLine": true,
+          "sm": 12
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "strength",
+          "label": "Coffee strength",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"strength\"}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.strength))",
+          "sm": 4,
+          "onChange": {
+            "alsoDependsOn": ["productCode"],
+            "calculateFunc": "'default'",
+            "ignoreOwnChanges": true
+          }
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "water",
+          "label": "Coffee water (ml)",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"water\"}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.water))",
+          "sm": 4,
+          "onChange": {
+            "alsoDependsOn": ["productCode"],
+            "calculateFunc": "'default'",
+            "ignoreOwnChanges": true
+          }
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "milkAmount",
+          "label": "Liquid milk (s)",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"milkAmount\"}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milkAmount))",
+          "sm": 4,
+          "onChange": {
+            "alsoDependsOn": ["productCode"],
+            "calculateFunc": "'default'",
+            "ignoreOwnChanges": true
+          }
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "milkFoam",
+          "label": "Milk foam (s)",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"milkFoam\"}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milk))",
+          "sm": 4,
+          "onChange": {
+            "alsoDependsOn": ["productCode"],
+            "calculateFunc": "'default'",
+            "ignoreOwnChanges": true
+          }
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "bypass",
+          "label": "Bypass water (ml)",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"bypass\"}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.bypass))",
+          "sm": 4,
+          "onChange": {
+            "alsoDependsOn": ["productCode"],
+            "calculateFunc": "'default'",
+            "ignoreOwnChanges": true
+          }
+        },
+        {
+          "type": "selectSendTo",
+          "attr": "temperature",
+          "label": "Temperature",
+          "command": "customRecipeOptions",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"temperature\"}",
+          "alsoDependsOn": ["productCode"],
+          "noTranslation": true,
+          "manual": false,
+          "default": "default",
+          "dependsOnStates": {
+            "catalog": ".products.catalog"
+          },
+          "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.defaultTemperature))",
+          "sm": 4,
+          "onChange": {
+            "alsoDependsOn": ["productCode"],
+            "calculateFunc": "'default'",
+            "ignoreOwnChanges": true
+          }
+        },
         {
           "type": "text",
           "attr": "recipe",
-          "title": "Brew parameters (JSON)",
-          "width": "70%"
+          "label": "Brew parameters (JSON)",
+          "hidden": "!(data.useJson ?? !!data.recipe)",
+          "validateJson": true,
+          "allowEmpty": true,
+          "help": "Enter a numeric productCode and any overrides you want. Example: {\"productCode\": 5, \"water\": 90, \"milkAmount\": 9, \"milkFoam\": 2}. Omitted settings use the base drink defaults. Find product codes and allowed ranges in the products.catalog state.",
+          "minRows": 3,
+          "newLine": true,
+          "sm": 12
         }
       ]
     }

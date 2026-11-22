@@ -59,6 +59,75 @@ test('a custom drink sends its saved recipe and resets after acceptance', async 
   );
 });
 
+test('a guided custom drink uses selected overrides and ignores values from a previous base drink', async t => {
+  const id = 'products.custom.Guided Milkcoffee';
+  const { adapter, machine } = await startPaired(t, [
+    {
+      name: 'Guided Milkcoffee',
+      useJson: false,
+      recipe: '{"productCode":2}',
+      productCode: '5',
+      strength: '2:1',
+      water: 'default',
+      milkAmount: '5:9',
+      milkFoam: '5:0',
+    },
+  ]);
+  adapter.write(id, true);
+  await until(
+    () => adapter.states.get(id)?.ack === true,
+    'guided drink acknowledgment',
+  );
+  assert.equal(adapter.states.get(id)?.val, false);
+  assert.deepEqual(machine.brewRequests, [
+    '@TP:05000512090001000100000000000000',
+  ]);
+});
+
+test('Admin recipe options follow the detected catalog and the selected product', async t => {
+  const machine = new SimulatedMachine();
+  const { adapter, poll } = await startAdapter(t, machine, config);
+  function options(
+    message: {
+      productCode?: string;
+      parameter?: string;
+    } = {},
+  ) {
+    adapter.emit('message', {
+      command: 'customRecipeOptions',
+      from: 'system.adapter.admin.0',
+      message,
+      callback: { id: 1, ack: false, time: 0, message },
+    });
+    return adapter.replies.at(-1)?.data;
+  }
+
+  assert.deepEqual(options(), []);
+  await poll();
+  const products = options();
+  assert(Array.isArray(products));
+  assert.deepEqual(
+    products.find(option => option.value === '5'),
+    { value: '5', label: 'Milkcoffee' },
+  );
+  assert.deepEqual(options({ productCode: '2', parameter: 'milkFoam' }), []);
+  const foam = options({ productCode: '5', parameter: 'milkFoam' });
+  assert(Array.isArray(foam));
+  assert.deepEqual(foam.slice(0, 2), [
+    { value: 'default', label: 'Use default (3 s)' },
+    { value: '5:0', label: '0 s' },
+  ]);
+  assert.deepEqual(foam.at(-1), { value: '5:45', label: '45 s' });
+  const bypass = options({ productCode: '40', parameter: 'bypass' });
+  assert(Array.isArray(bypass));
+  assert.deepEqual(bypass.slice(0, 3), [
+    { value: 'default', label: 'Use default (50 ml)' },
+    { value: '40:0', label: '0 ml' },
+    { value: '40:5', label: '5 ml' },
+  ]);
+  assert.deepEqual(machine.brewRequests, []);
+});
+
 test('invalid custom drink parameters leave the switch unacknowledged', async t => {
   const id = 'products.custom.Too Much Milk';
   const { adapter, machine } = await startPaired(t, [
