@@ -91,6 +91,7 @@ test('Admin recipe options follow the detected catalog and the selected product'
     message: {
       productCode?: string;
       parameter?: string;
+      selected?: string;
     } = {},
   ) {
     adapter.emit('message', {
@@ -129,6 +130,13 @@ test('Admin recipe options follow the detected catalog and the selected product'
     { value: '40:0', label: '0 ml' },
     { value: '40:5', label: '5 ml' },
   ]);
+  const water = options({
+    productCode: '48',
+    parameter: 'water',
+    selected: '43:45',
+  });
+  assert(Array.isArray(water));
+  assert.deepEqual(water[0], { value: '43:45', label: 'Use default (90 ml)' });
   assert.deepEqual(machine.brewRequests, []);
 });
 

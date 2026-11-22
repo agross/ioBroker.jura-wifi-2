@@ -89,7 +89,15 @@ function customBrewRequest(row: CustomRecipeConfig): BrewRequest {
 
 function recipeOptions(
   products: readonly Product[],
-  { productCode, parameter }: { productCode?: unknown; parameter?: unknown },
+  {
+    productCode,
+    parameter,
+    selected,
+  }: {
+    productCode?: unknown;
+    parameter?: unknown;
+    selected?: unknown;
+  },
 ) {
   if (parameter === undefined) {
     return products
@@ -116,8 +124,16 @@ function recipeOptions(
           (_, i) => setting.min + i * setting.step,
         );
   const defaultValue = typeof setting === 'string' ? setting : setting.default;
+  // Admin renders the raw selection when its value is missing from the menu.
+  // A selection for another product already means "use default" when brewing.
+  const defaultOption =
+    typeof selected === 'string' &&
+    /^\d+:/.test(selected) &&
+    !selected.startsWith(`${product.code}:`)
+      ? selected
+      : 'default';
   return [
-    { value: 'default', label: `Use default (${defaultValue}${unit})` },
+    { value: defaultOption, label: `Use default (${defaultValue}${unit})` },
     ...values.map(value => ({
       value: `${product.code}:${value}`,
       label: `${value}${unit}`,

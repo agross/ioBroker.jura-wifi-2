@@ -91,7 +91,7 @@
           "attr": "strength",
           "label": "Coffee strength",
           "command": "customRecipeOptions",
-          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"strength\"}",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"strength\",\"selected\":${JSON.stringify(data.strength ?? '')}}",
           "alsoDependsOn": ["productCode"],
           "noTranslation": true,
           "manual": false,
@@ -100,19 +100,14 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.strength))",
-          "sm": 4,
-          "onChange": {
-            "alsoDependsOn": ["productCode"],
-            "calculateFunc": "'default'",
-            "ignoreOwnChanges": true
-          }
+          "sm": 4
         },
         {
           "type": "selectSendTo",
           "attr": "water",
           "label": "Coffee water (ml)",
           "command": "customRecipeOptions",
-          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"water\"}",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"water\",\"selected\":${JSON.stringify(data.water ?? '')}}",
           "alsoDependsOn": ["productCode"],
           "noTranslation": true,
           "manual": false,
@@ -121,19 +116,14 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.water))",
-          "sm": 4,
-          "onChange": {
-            "alsoDependsOn": ["productCode"],
-            "calculateFunc": "'default'",
-            "ignoreOwnChanges": true
-          }
+          "sm": 4
         },
         {
           "type": "selectSendTo",
           "attr": "milkAmount",
           "label": "Liquid milk (s)",
           "command": "customRecipeOptions",
-          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"milkAmount\"}",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"milkAmount\",\"selected\":${JSON.stringify(data.milkAmount ?? '')}}",
           "alsoDependsOn": ["productCode"],
           "noTranslation": true,
           "manual": false,
@@ -142,19 +132,14 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milkAmount))",
-          "sm": 4,
-          "onChange": {
-            "alsoDependsOn": ["productCode"],
-            "calculateFunc": "'default'",
-            "ignoreOwnChanges": true
-          }
+          "sm": 4
         },
         {
           "type": "selectSendTo",
           "attr": "milkFoam",
           "label": "Milk foam (s)",
           "command": "customRecipeOptions",
-          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"milkFoam\"}",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"milkFoam\",\"selected\":${JSON.stringify(data.milkFoam ?? '')}}",
           "alsoDependsOn": ["productCode"],
           "noTranslation": true,
           "manual": false,
@@ -163,19 +148,14 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milk))",
-          "sm": 4,
-          "onChange": {
-            "alsoDependsOn": ["productCode"],
-            "calculateFunc": "'default'",
-            "ignoreOwnChanges": true
-          }
+          "sm": 4
         },
         {
           "type": "selectSendTo",
           "attr": "bypass",
           "label": "Bypass water (ml)",
           "command": "customRecipeOptions",
-          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"bypass\"}",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"bypass\",\"selected\":${JSON.stringify(data.bypass ?? '')}}",
           "alsoDependsOn": ["productCode"],
           "noTranslation": true,
           "manual": false,
@@ -184,19 +164,14 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.bypass))",
-          "sm": 4,
-          "onChange": {
-            "alsoDependsOn": ["productCode"],
-            "calculateFunc": "'default'",
-            "ignoreOwnChanges": true
-          }
+          "sm": 4
         },
         {
           "type": "selectSendTo",
           "attr": "temperature",
           "label": "Temperature",
           "command": "customRecipeOptions",
-          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"temperature\"}",
+          "jsonData": "{\"productCode\":\"${data.productCode}\",\"parameter\":\"temperature\",\"selected\":${JSON.stringify(data.temperature ?? '')}}",
           "alsoDependsOn": ["productCode"],
           "noTranslation": true,
           "manual": false,
@@ -205,12 +180,7 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.defaultTemperature))",
-          "sm": 4,
-          "onChange": {
-            "alsoDependsOn": ["productCode"],
-            "calculateFunc": "'default'",
-            "ignoreOwnChanges": true
-          }
+          "sm": 4
         },
         {
           "type": "text",

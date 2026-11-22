@@ -106,7 +106,7 @@ brew command.
 In the instance settings, add a recipe under **Custom drinks** and give it a
 name, such as `My Drink`. Once the adapter has detected the machine, choose a
 **Base drink** and select any overrides. Each setting starts with the catalog
-default. Changes to the base drink reset the overrides.
+default. Overrides apply only to the base drink they were selected for.
 
 If the catalog is unavailable, enable **Edit recipe as JSON** and enter the
 same JSON you would send to `commands.brew`. Existing JSON recipes open in
