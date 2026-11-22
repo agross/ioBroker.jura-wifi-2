@@ -1,0 +1,68 @@
+{
+  "type": "panel",
+  "i18n": false,
+  "items": {
+    "host": {
+      "type": "text",
+      "label": "Machine IP address or hostname",
+      "sm": 6
+    },
+    "pollInterval": {
+      "type": "number",
+      "label": "Status polling interval (seconds)",
+      "min": 1,
+      "max": 60,
+      "sm": 6
+    },
+    "setupPin": {
+      "type": "password",
+      "label": "Machine setup PIN (optional)",
+      "sm": 6
+    },
+    "token": {
+      "type": "password",
+      "label": "Pairing token (filled by Pair)",
+      "sm": 6
+    },
+    "_pair": {
+      "type": "sendTo",
+      "label": "Pair",
+      "command": "pair",
+      "variant": "contained",
+      "icon": "auth",
+      "disabled": "!data.host || !data.host.trim()",
+      "jsonData": "{\"host\":\"${data.host}\",\"setupPin\":\"${data.setupPin}\"}",
+      "useNative": true,
+      "showProcess": true,
+      "timeout": 28000,
+      "newLine": true,
+      "sm": 3,
+      "result": {
+        "paired": {
+          "en": "Pairing confirmed. Click Save to apply the credentials."
+        }
+      }
+    },
+    "_pairInstructions": {
+      "type": "staticText",
+      "text": "Enable the instance, enter the address, then click Pair and confirm on the machine display. Leave the PIN blank if PIN protection is off.",
+      "sm": 9
+    },
+    "customRecipes": {
+      "type": "table",
+      "label": "Custom drinks",
+      "newLine": true,
+      "sm": 12,
+      "uniqueColumns": ["name"],
+      "items": [
+        { "type": "text", "attr": "name", "title": "Name", "width": "30%" },
+        {
+          "type": "text",
+          "attr": "recipe",
+          "title": "Brew parameters (JSON)",
+          "width": "70%"
+        }
+      ]
+    }
+  }
+}

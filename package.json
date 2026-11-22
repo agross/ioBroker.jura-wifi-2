@@ -1,0 +1,24 @@
+{
+  "name": "iobroker.jura-wifi-2",
+  "version": "0.3.2",
+  "description": "Control and monitor a JURA coffee machine over WiFi Smart Connect v2",
+  "license": "MIT",
+  "author": "Alexander Groß",
+  "main": "build/main.js",
+  "engines": {
+    "node": ">=22"
+  },
+  "files": ["admin", "io-package.json", "build/main.js", "build/lib/jura.js", "lib/catalogs"],
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "test": "npm run build && node --test \"build/test/**/*.test.js\"",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@iobroker/adapter-core": "^3.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "~6.0.3"
+  }
+}

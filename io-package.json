@@ -1,0 +1,124 @@
+{
+  "common": {
+    "name": "jura-wifi-2",
+    "version": "0.3.2",
+    "news": {
+      "0.3.2": {
+        "en": "Convert adapter and tests to TypeScript",
+        "de": "Adapter und Tests auf TypeScript umstellen"
+      },
+      "0.3.1": {
+        "en": "Use product names in counter state IDs",
+        "de": "Produktnamen als IDs der Produktzähler verwenden"
+      },
+      "0.3.0": {
+        "en": "Bundle all Juras model catalogs and select them by reported model",
+        "de": "Alle Juras-Modellkataloge mitliefern und anhand des gemeldeten Modells auswählen"
+      },
+      "0.2.6": {
+        "en": "Decode statistics replies with additional escaped bytes",
+        "de": "Statistikantworten mit zusätzlichen maskierten Bytes dekodieren"
+      },
+      "0.2.5": {
+        "en": "Refresh statistics at startup when the machine is available",
+        "de": "Statistiken beim Start aktualisieren, sobald die Maschine verfügbar ist"
+      },
+      "0.2.4": {
+        "en": "Refresh product and maintenance statistics every 10 minutes",
+        "de": "Produkt- und Wartungsstatistiken alle 10 Minuten aktualisieren"
+      },
+      "0.2.3": {
+        "en": "Use product names as brew switch IDs",
+        "de": "Produktnamen als IDs der Bezugsschalter verwenden"
+      },
+      "0.2.2": {
+        "en": "Add a brew switch for every catalog product",
+        "de": "Einen Bezugsschalter für jedes Produkt im Katalog hinzufügen"
+      },
+      "0.2.1": {
+        "en": "Support pairing when the machine has no PIN",
+        "de": "Kopplung ohne Maschinen-PIN unterstützen"
+      },
+      "0.2.0": {
+        "en": "Pair the coffee machine from ioBroker Admin",
+        "de": "Kaffeemaschine über ioBroker Admin koppeln"
+      },
+      "0.1.1": {
+        "en": "Require valid pairing for the connection indicator",
+        "de": "Verbindungsanzeige erfordert gültige Kopplung"
+      },
+      "0.1.0": {
+        "en": "Initial release for the JURA Z10",
+        "de": "Erste Version für die JURA Z10"
+      }
+    },
+    "tier": 3,
+    "titleLang": {
+      "en": "JURA WiFi Smart Connect v2",
+      "de": "JURA WiFi Smart Connect v2"
+    },
+    "desc": {
+      "en": "Monitor and control a JURA coffee machine on your local network.",
+      "de": "Eine JURA-Kaffeemaschine im lokalen Netzwerk überwachen und steuern."
+    },
+    "authors": ["Alexander Groß"],
+    "licenseInformation": { "type": "free", "license": "MIT" },
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "type": "iot-systems",
+    "connectionType": "local",
+    "dataSource": "poll",
+    "icon": "jura-wifi-2.svg",
+    "extIcon": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Jura_Logo.svg",
+    "enabled": false,
+    "compact": true,
+    "messagebox": true,
+    "materialize": true,
+    "adminUI": { "config": "json" },
+    "dependencies": [{ "js-controller": ">=7.0.0" }],
+    "globalDependencies": [{ "admin": ">=7.0.0" }]
+  },
+  "encryptedNative": ["setupPin", "token"],
+  "protectedNative": ["setupPin", "token"],
+  "native": {
+    "host": "",
+    "pollInterval": 2,
+    "setupPin": "",
+    "token": "",
+    "customRecipes": []
+  },
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": { "name": "Information" },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "name": "Connected to device or service",
+        "type": "boolean",
+        "role": "indicator.connected",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.reachable",
+      "type": "state",
+      "common": {
+        "name": "Machine responds to UDP",
+        "type": "boolean",
+        "role": "indicator",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
+}
