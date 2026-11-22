@@ -264,6 +264,7 @@ test('TCP pairs, authenticates and sends brew and stop on separate sessions', as
   const server = net.createServer(socket => {
     let pending = Buffer.alloc(0);
     socket.on('data', chunk => {
+      assert(Buffer.isBuffer(chunk));
       pending = Buffer.concat([pending, chunk]);
       let end;
       while ((end = pending.indexOf('\r\n')) !== -1) {
