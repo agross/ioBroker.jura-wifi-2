@@ -536,15 +536,19 @@ test('only a valid Admin pairing request reaches the machine', async t => {
   assert.deepEqual(machine.requests, ['@HP:,696F42726F6B6572,']);
 });
 
-test('statistics migrate plain hex counters and preserve legacy history settings', async t => {
+test('statistics rename generated state IDs and preserve legacy history settings', async t => {
   const machine = new SimulatedMachine();
   const hexEspresso = 'products.counts.02';
   const hexCoffee = 'products.counts.03';
+  const oldCappuClean = 'maintenance.cycles.cappu_clean';
+  const oldFilterChange = 'maintenance.percent.filter_change';
   const history = { 'history.0': { enabled: true } };
   const { adapter, poll } = await startAdapter(t, machine, config, store => {
     for (const [id, name, custom] of [
       [hexEspresso, 'Espresso', undefined],
       [hexCoffee, 'Coffee', history],
+      [oldCappuClean, 'Cappu clean', undefined],
+      [oldFilterChange, 'Filter change', history],
     ] as const) {
       store.objects.set(id, {
         from: 'system.adapter.jura-wifi-2.0',
@@ -573,6 +577,15 @@ test('statistics migrate plain hex counters and preserve legacy history settings
   assert.equal(adapter.states.get('products.counts.Total')?.val, 12);
   assert.equal(adapter.states.get('products.counts.Coffee')?.val, 7);
   assert.equal(adapter.states.get('maintenance.percent.descaling')?.val, null);
+  assert.equal(adapter.states.get('maintenance.cycles.cappuClean')?.val, 6);
+  assert.equal(adapter.states.get('maintenance.percent.filterChange')?.val, 80);
+  assert.equal(adapter.objects.has(oldCappuClean), false);
+  assert.equal(adapter.states.has(oldCappuClean), false);
+  assert.deepEqual(
+    (adapter.objects.get(oldFilterChange)?.common as ioBroker.StateCommon).custom,
+    history,
+  );
+  assert.equal(adapter.states.get(oldFilterChange)?.val, 3);
   assert.equal(adapter.objects.has(hexEspresso), false);
   assert.equal(adapter.states.has(hexEspresso), false);
   const legacy = adapter.objects.get(hexCoffee);

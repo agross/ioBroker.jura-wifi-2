@@ -58,7 +58,7 @@ For instance `jura-wifi-2.0`:
 | `products.custom.<drink name>` | Writable boolean switch that brews a saved custom drink |
 | `products.counts.<product name>` | Per-product brew counts, refreshed at startup, every 10 minutes, and on demand |
 | `products.counts.Total` | Total brew count |
-| `maintenance.*` | Maintenance data refreshed on the same schedule |
+| `maintenance.*` | Maintenance data refreshed on the same schedule, with IDs such as `maintenance.cycles.cappuClean` |
 | `info.commandResult` | Result of the latest processed command |
 
 Write commands with `ack: false`. Write `true` to a product switch to brew it.
@@ -221,6 +221,7 @@ for subsequent versions.
 - Refresh product settings from J.O.E. profiles and add the S10 catalog.
 - Add preselections, twin-grinder ratios, and extended grind levels to custom drinks.
 - Add Cold Brew catalog switches for drinks that support the preselection.
+- Use camelCase maintenance state IDs, such as `maintenance.cycles.cappuClean`.
 
 ## License
 

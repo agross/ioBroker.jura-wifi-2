@@ -902,6 +902,8 @@ class JuraAdapter extends Adapter {
     const products = productCounters(catalog);
     const countStates = this.productStates('counts', products);
     const counts = new Map(stats.products);
+    const catalogChanged = this.countCatalog !== catalog;
+    const legacyMaintenance = new Map<string, string>();
     for (const [id, product] of countStates) {
       await this.state(id, product.name, 'number', 'value');
       values[id] = counts.get(product.code) ?? null;
@@ -911,14 +913,23 @@ class JuraAdapter extends Adapter {
       ['cycles', catalog.maintenanceCounterFields, stats.cycles, undefined],
     ] as const) {
       for (const [index, name] of names.entries()) {
-        const id = `maintenance.${kind}.${name.toLowerCase().replaceAll(' ', '_')}`;
+        const label = name.toLowerCase();
+        const prefix = `maintenance.${kind}.`;
+        const id =
+          prefix + label.replace(/ +([a-z])/g, (_, next) => next.toUpperCase());
         await this.state(id, name, 'number', 'value', unit ? { unit } : {});
         values[id] = counters[index];
+        const legacyId = prefix + label.replaceAll(' ', '_');
+        if (catalogChanged && legacyId !== id)
+          legacyMaintenance.set(legacyId, name);
       }
     }
     await this.publish(values);
 
-    if (this.countCatalog !== catalog) {
+    if (catalogChanged) {
+      for (const [id, name] of legacyMaintenance) {
+        await this.removeLegacyState(id, name, 'value');
+      }
       for (const [code] of stats.products) {
         const legacyId = `products.counts.${productId(code)}`;
         const product = products.find(entry => entry.code === code);
