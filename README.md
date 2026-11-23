@@ -1,4 +1,4 @@
-# ioBroker JURA WiFi Smart Connect v2
+# JURA WiFi Connect V2
 
 Monitor a JURA coffee machine on your LAN and send brew, stop, and statistics
 requests from ioBroker. UDP monitoring works without credentials. TCP commands
@@ -211,6 +211,10 @@ Publishing](https://docs.npmjs.com/trusted-publishers/) for
 for subsequent versions.
 
 ## Changelog
+
+### **WORK IN PROGRESS**
+
+- Rename the adapter title to JURA WiFi Connect V2.
 
 ### 0.3.5 (2026-11-23)
 
