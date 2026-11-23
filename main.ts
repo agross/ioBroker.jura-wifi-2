@@ -75,6 +75,14 @@ const recipeParameters = {
 type RangeParameter = keyof typeof recipeParameters;
 type RecipeParameter = RangeParameter | 'grinderRatio' | 'preselections';
 
+const grindLevelLabels = new Map([
+  ['1', 'Very coarse'],
+  ['2', 'Coarse'],
+  ['3', 'Medium'],
+  ['4', 'Fine'],
+  ['5', 'Very fine'],
+]);
+
 function customBrewRequest(row: CustomRecipeConfig): BrewRequest {
   if (row.useJson ?? Boolean(row.recipe)) {
     return parseBrewRequest(row.recipe ?? '');
@@ -151,7 +159,10 @@ function recipeOptions(
       },
       ...profileOptions.map(({ value, label }) => ({
         value: `${product.code}:${value}`,
-        label,
+        label:
+          parameter === 'grindLevel'
+            ? grindLevelLabels.get(String(value)) ?? label
+            : label,
       })),
     ];
   }
@@ -179,7 +190,10 @@ function recipeOptions(
     },
     ...values.map(value => ({
       value: `${product.code}:${value}`,
-      label: `${value}${unit}`,
+      label:
+        field === 'grindLevel'
+          ? grindLevelLabels.get(String(value)) ?? String(value)
+          : `${value}${unit}`,
     })),
   ];
 }

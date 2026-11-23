@@ -182,6 +182,14 @@ test('Admin recipe options follow the detected catalog and the selected product'
     { value: '4:coldbrew', label: 'Cold brew' },
   ]);
   assert.deepEqual(options({ productCode: '4', parameter: 'grinderRatio' }), []);
+  assert.deepEqual(options({ productCode: '2', parameter: 'grindLevel' }), [
+    { value: 'default', label: 'Use machine default' },
+    { value: '2:1', label: 'Very coarse' },
+    { value: '2:2', label: 'Coarse' },
+    { value: '2:3', label: 'Medium' },
+    { value: '2:4', label: 'Fine' },
+    { value: '2:5', label: 'Very fine' },
+  ]);
 
   machine.model = 'EF1060 V01.00';
   await poll();
@@ -196,8 +204,8 @@ test('Admin recipe options follow the detected catalog and the selected product'
   await poll();
   assert.deepEqual(options({ productCode: '2', parameter: 'grindLevel' }), [
     { value: 'default', label: 'Use machine default' },
-    { value: '2:1', label: '1' },
-    { value: '2:2', label: '2' },
+    { value: '2:1', label: 'Very coarse' },
+    { value: '2:2', label: 'Coarse' },
   ]);
   const preselections = options({ productCode: '2', parameter: 'preselections' });
   assert(Array.isArray(preselections));
