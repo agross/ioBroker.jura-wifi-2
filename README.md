@@ -212,7 +212,7 @@ for subsequent versions.
 
 ## Changelog
 
-### **WORK IN PROGRESS**
+### 0.3.5 (2026-11-23)
 
 - Label grind levels from Very coarse to Very fine in the custom drink editor.
 

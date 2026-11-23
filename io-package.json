@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "jura-wifi-2",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "news": {
+        "0.3.5": {
+          "en": "Label grind levels from Very coarse to Very fine in the custom drink editor.",
+          "de": "Mahlgrade im Editor für eigene Getränke von „Sehr grob“ bis „Sehr fein“ benennen.",
+          "ru": "Обозначить степени помола от очень грубого до очень мелкого в редакторе пользовательских напитков.",
+          "pt": "Identificar os graus de moagem de muito grosso a muito fino no editor de bebidas personalizadas.",
+          "nl": "Benoem de maalgraden van zeer grof tot zeer fijn in de editor voor aangepaste dranken.",
+          "fr": "Nommer les degrés de mouture de très grossier à très fin dans l’éditeur de boissons personnalisées.",
+          "it": "Assegnare ai livelli di macinatura etichette da molto grossa a molto fine nell’editor delle bevande personalizzate.",
+          "es": "Etiquetar los grados de molienda de muy gruesa a muy fina en el editor de bebidas personalizadas.",
+          "pl": "Oznacz stopnie mielenia od bardzo grubego do bardzo drobnego w edytorze własnych napojów.",
+          "uk": "Позначити ступені помелу від дуже грубого до дуже дрібного в редакторі власних напоїв.",
+          "zh-cn": "在自定义饮品编辑器中为研磨度添加从“很粗”到“很细”的标签。"
+        },
       "0.3.4": {
         "en": "Document how to install the adapter from npm through ioBroker Admin.",
         "de": "Anleitung zur Adapterinstallation von npm über ioBroker Admin.",
