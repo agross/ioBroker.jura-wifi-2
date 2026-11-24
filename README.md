@@ -221,6 +221,18 @@ for subsequent versions.
 ### **WORK IN PROGRESS**
 
 - Rename the adapter title to JURA WiFi Connect V2.
+- Add JURA, coffee-maker, and WiFi Connect search keywords.
+- Localize the adapter title, description, and published release news.
+- Serve the bundled JURA icon at 512 × 512 pixels in the ioBroker listing.
+- Include maintainer contact details and copyright notices.
+- Require ioBroker Admin 7.6.20 or later.
+- Set responsive widths for all Admin settings and custom drink controls.
+- Use npm packages for installation through ioBroker Admin.
+- Use adapter-managed polling timers and clear pending polls on unload.
+- Cancel superseded workflow runs for the same Git ref.
+- Gate releases on lint, package validation, simulator tests, and adapter startup
+  tests on Ubuntu, Windows, and macOS. Use Mocha from `@iobroker/testing`.
+- Document the work-in-progress changelog rule for contributors.
 
 ### 0.3.5 (2026-11-23)
 
