@@ -86,7 +86,7 @@
     "materialize": true,
     "adminUI": { "config": "json" },
     "dependencies": [{ "js-controller": ">=7.0.0" }],
-    "globalDependencies": [{ "admin": ">=7.0.0" }]
+    "globalDependencies": [{ "admin": ">=7.6.20" }]
   },
   "encryptedNative": ["setupPin", "token"],
   "protectedNative": ["setupPin", "token"],

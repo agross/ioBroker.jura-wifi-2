@@ -11,8 +11,8 @@ identity and raw live status. Commands require a matching catalog.
 
 ## Install
 
-The package requires Node.js 22 or later, js-controller 7 or later, and Admin 7
-or later.
+The package requires Node.js 22 or later, js-controller 7 or later, and Admin
+7.6.20 or later.
 
 1. In ioBroker Admin, enable expert mode and open **Adapters**.
 2. Click the Octocat icon to open the installation dialog, then select **Custom**.
