@@ -96,6 +96,7 @@
     "platform": "Javascript/Node.js",
     "mode": "daemon",
     "type": "iot-systems",
+    "keywords": ["jura", "coffee-maker", "wifi-connect"],
     "connectionType": "local",
     "dataSource": "poll",
     "icon": "jura-wifi-2.svg",
