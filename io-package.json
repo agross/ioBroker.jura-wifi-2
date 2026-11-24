@@ -100,7 +100,7 @@
     "connectionType": "local",
     "dataSource": "poll",
     "icon": "jura-wifi-2.svg",
-    "extIcon": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Jura_Logo.svg",
+    "extIcon": "https://raw.githubusercontent.com/agross/ioBroker.jura-wifi-2/main/admin/jura-wifi-2.svg",
     "enabled": false,
     "compact": true,
     "messagebox": true,
