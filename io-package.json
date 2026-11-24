@@ -85,11 +85,29 @@
     "tier": 3,
     "titleLang": {
       "en": "JURA WiFi Connect V2",
-      "de": "JURA WiFi Connect V2"
+      "de": "JURA WiFi Connect V2",
+      "ru": "JURA WiFi Connect V2",
+      "pt": "JURA WiFi Connect V2",
+      "nl": "JURA WiFi Connect V2",
+      "fr": "JURA WiFi Connect V2",
+      "it": "JURA WiFi Connect V2",
+      "es": "JURA WiFi Connect V2",
+      "pl": "JURA WiFi Connect V2",
+      "uk": "JURA WiFi Connect V2",
+      "zh-cn": "JURA WiFi Connect V2"
     },
     "desc": {
       "en": "Monitor and control a JURA coffee machine on your local network.",
-      "de": "Eine JURA-Kaffeemaschine im lokalen Netzwerk überwachen und steuern."
+      "de": "Eine JURA-Kaffeemaschine im lokalen Netzwerk überwachen und steuern.",
+      "ru": "Отслеживание состояния и управление кофемашиной JURA в локальной сети.",
+      "pt": "Monitorize e controle uma máquina de café JURA na rede local.",
+      "nl": "Bewaak en bedien een JURA-koffiemachine via het lokale netwerk.",
+      "fr": "Surveillez et contrôlez une machine à café JURA sur votre réseau local.",
+      "it": "Monitora e controlla una macchina da caffè JURA sulla rete locale.",
+      "es": "Supervisa y controla una cafetera JURA en tu red local.",
+      "pl": "Monitoruj ekspres do kawy JURA i steruj nim w sieci lokalnej.",
+      "uk": "Відстежуйте стан кавомашини JURA та керуйте нею в локальній мережі.",
+      "zh-cn": "在局域网中监控和控制 JURA 咖啡机。"
     },
     "authors": ["Alexander Groß"],
     "licenseInformation": { "type": "free", "license": "MIT" },
