@@ -5,24 +5,40 @@
     "host": {
       "type": "text",
       "label": "Machine IP address or hostname",
-      "sm": 6
+      "xs": 12,
+      "sm": 6,
+      "md": 6,
+      "lg": 6,
+      "xl": 6
     },
     "pollInterval": {
       "type": "number",
       "label": "Status polling interval (seconds)",
       "min": 1,
       "max": 60,
-      "sm": 6
+      "xs": 12,
+      "sm": 6,
+      "md": 6,
+      "lg": 6,
+      "xl": 6
     },
     "setupPin": {
       "type": "password",
       "label": "Machine setup PIN (optional)",
-      "sm": 6
+      "xs": 12,
+      "sm": 6,
+      "md": 6,
+      "lg": 6,
+      "xl": 6
     },
     "token": {
       "type": "password",
       "label": "Pairing token (filled by Pair)",
-      "sm": 6
+      "xs": 12,
+      "sm": 6,
+      "md": 6,
+      "lg": 6,
+      "xl": 6
     },
     "_pair": {
       "type": "sendTo",
@@ -36,7 +52,11 @@
       "showProcess": true,
       "timeout": 28000,
       "newLine": true,
+      "xs": 12,
       "sm": 3,
+      "md": 3,
+      "lg": 3,
+      "xl": 3,
       "result": {
         "paired": {
           "en": "Pairing confirmed. Click Save to apply the credentials."
@@ -46,33 +66,53 @@
     "_pairInstructions": {
       "type": "staticText",
       "text": "Enable the instance, enter the address, then click Pair and confirm on the machine display. Leave the PIN blank if PIN protection is off.",
-      "sm": 9
+      "xs": 12,
+      "sm": 9,
+      "md": 9,
+      "lg": 9,
+      "xl": 9
     },
     "_customDrinkInstructions": {
       "type": "staticText",
       "text": "Choose a base drink from the detected machine, then change any settings you want to override. Use the JSON editor when the catalog is unavailable.",
       "newLine": true,
-      "sm": 12
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12,
+      "xl": 12
     },
     "customRecipes": {
       "type": "accordion",
       "label": "Custom drinks",
       "titleAttr": "name",
       "newLine": true,
+      "xs": 12,
       "sm": 12,
+      "md": 12,
+      "lg": 12,
+      "xl": 12,
       "items": [
         {
           "type": "text",
           "attr": "name",
           "label": "Drink name",
-          "sm": 8
+          "xs": 12,
+          "sm": 8,
+          "md": 8,
+          "lg": 8,
+          "xl": 8
         },
         {
           "type": "checkbox",
           "attr": "useJson",
           "label": "Edit recipe as JSON",
           "defaultFunc": "!!data.recipe",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "selectSendTo",
@@ -84,7 +124,11 @@
           "hidden": "data.useJson ?? !!data.recipe",
           "help": "If the machine has never been detected, turn it on and reopen these settings.",
           "newLine": true,
-          "sm": 12
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         {
           "type": "selectSendTo",
@@ -100,7 +144,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.strength))",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "selectSendTo",
@@ -116,7 +164,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.water))",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "selectSendTo",
@@ -132,7 +184,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milkAmount))",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "selectSendTo",
@@ -148,7 +204,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milk))",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "selectSendTo",
@@ -164,7 +224,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.bypass))",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "selectSendTo",
@@ -180,7 +244,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && (p.grindLevel || p.additionalSettings?.GRINDER_FREENESS?.argument === 'F17')))",
+          "xs": 12,
           "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4,
           "help": "Available levels depend on the machine and base drink."
         },
         {
@@ -197,7 +265,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.additionalSettings?.GRINDER_RATIO?.argument === 'F2'))",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "selectSendTo",
@@ -213,7 +285,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.availablePreselections?.length))",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "selectSendTo",
@@ -229,7 +305,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.strokes))",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "selectSendTo",
@@ -245,7 +325,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milkPause))",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "selectSendTo",
@@ -261,7 +345,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milkTemperature))",
+          "xs": 12,
           "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4,
           "help": "This setting has not been verified on a Z10."
         },
         {
@@ -278,7 +366,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.milkFoamTemperature))",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "selectSendTo",
@@ -294,7 +386,11 @@
             "catalog": ".products.catalog"
           },
           "hidden": "(data.useJson ?? !!data.recipe) || !data.productCode || (typeof _states !== 'undefined' && !JSON.parse(_states.catalog?.val || '[]')?.some(p => p.code === Number(data.productCode) && p.defaultTemperature))",
-          "sm": 4
+          "xs": 12,
+          "sm": 4,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         {
           "type": "text",
@@ -306,7 +402,11 @@
           "help": "Enter a numeric productCode and any overrides you want. Example: {\"productCode\": 5, \"water\": 90, \"milkAmount\": 9, \"milkFoam\": 2}. Omitted settings use the base drink defaults. Find product codes and allowed ranges in the products.catalog state.",
           "minRows": 3,
           "newLine": true,
-          "sm": 12
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         }
       ]
     }
