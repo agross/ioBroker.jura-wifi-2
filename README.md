@@ -220,6 +220,7 @@ for subsequent versions.
 
 ### **WORK IN PROGRESS**
 
+- Remove the obsolete `materialize` flag from the Admin configuration metadata.
 - Rename the adapter title to JURA WiFi Connect V2.
 - Add JURA, coffee-maker, and WiFi Connect search keywords.
 - Localize the adapter title, description, and published release news.

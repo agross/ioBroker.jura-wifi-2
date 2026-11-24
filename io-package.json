@@ -84,7 +84,6 @@
     "enabled": false,
     "compact": true,
     "messagebox": true,
-    "materialize": true,
     "adminUI": { "config": "json" },
     "dependencies": [{ "js-controller": ">=7.0.0" }],
     "globalDependencies": [{ "admin": ">=7.6.20" }]
