@@ -3,19 +3,19 @@
     "name": "jura-wifi-2",
     "version": "0.3.5",
     "news": {
-        "0.3.5": {
-          "en": "Label grind levels from Very coarse to Very fine in the custom drink editor.",
-          "de": "Mahlgrade im Editor für eigene Getränke von „Sehr grob“ bis „Sehr fein“ benennen.",
-          "ru": "Обозначить степени помола от очень грубого до очень мелкого в редакторе пользовательских напитков.",
-          "pt": "Identificar os graus de moagem de muito grosso a muito fino no editor de bebidas personalizadas.",
-          "nl": "Benoem de maalgraden van zeer grof tot zeer fijn in de editor voor aangepaste dranken.",
-          "fr": "Nommer les degrés de mouture de très grossier à très fin dans l’éditeur de boissons personnalisées.",
-          "it": "Assegnare ai livelli di macinatura etichette da molto grossa a molto fine nell’editor delle bevande personalizzate.",
-          "es": "Etiquetar los grados de molienda de muy gruesa a muy fina en el editor de bebidas personalizadas.",
-          "pl": "Oznacz stopnie mielenia od bardzo grubego do bardzo drobnego w edytorze własnych napojów.",
-          "uk": "Позначити ступені помелу від дуже грубого до дуже дрібного в редакторі власних напоїв.",
-          "zh-cn": "在自定义饮品编辑器中为研磨度添加从“很粗”到“很细”的标签。"
-        },
+      "0.3.5": {
+        "en": "Label grind levels from Very coarse to Very fine in the custom drink editor.",
+        "de": "Mahlgrade im Editor für eigene Getränke von „Sehr grob“ bis „Sehr fein“ benennen.",
+        "ru": "Обозначить степени помола от очень грубого до очень мелкого в редакторе пользовательских напитков.",
+        "pt": "Identificar os graus de moagem de muito grosso a muito fino no editor de bebidas personalizadas.",
+        "nl": "Benoem de maalgraden van zeer grof tot zeer fijn in de editor voor aangepaste dranken.",
+        "fr": "Nommer les degrés de mouture de très grossier à très fin dans l’éditeur de boissons personnalisées.",
+        "it": "Assegnare ai livelli di macinatura etichette da molto grossa a molto fine nell’editor delle bevande personalizzate.",
+        "es": "Etiquetar los grados de molienda de muy gruesa a muy fina en el editor de bebidas personalizadas.",
+        "pl": "Oznacz stopnie mielenia od bardzo grubego do bardzo drobnego w edytorze własnych napojów.",
+        "uk": "Позначити ступені помелу від дуже грубого до дуже дрібного в редакторі власних напоїв.",
+        "zh-cn": "在自定义饮品编辑器中为研磨度添加从“很粗”到“很细”的标签。"
+      },
       "0.3.4": {
         "en": "Document how to install the adapter from npm through ioBroker Admin.",
         "de": "Anleitung zur Adapterinstallation von npm über ioBroker Admin.",
@@ -31,55 +31,16 @@
       },
       "0.3.3": {
         "en": "Allow editing custom drinks when the machine is off",
-        "de": "Eigene Getränke auch bei ausgeschalteter Maschine bearbeiten"
-      },
-      "0.3.2": {
-        "en": "Convert adapter and tests to TypeScript",
-        "de": "Adapter und Tests auf TypeScript umstellen"
-      },
-      "0.3.1": {
-        "en": "Use product names in counter state IDs",
-        "de": "Produktnamen als IDs der Produktzähler verwenden"
-      },
-      "0.3.0": {
-        "en": "Bundle all Juras model catalogs and select them by reported model",
-        "de": "Alle Juras-Modellkataloge mitliefern und anhand des gemeldeten Modells auswählen"
-      },
-      "0.2.6": {
-        "en": "Decode statistics replies with additional escaped bytes",
-        "de": "Statistikantworten mit zusätzlichen maskierten Bytes dekodieren"
-      },
-      "0.2.5": {
-        "en": "Refresh statistics at startup when the machine is available",
-        "de": "Statistiken beim Start aktualisieren, sobald die Maschine verfügbar ist"
-      },
-      "0.2.4": {
-        "en": "Refresh product and maintenance statistics every 10 minutes",
-        "de": "Produkt- und Wartungsstatistiken alle 10 Minuten aktualisieren"
-      },
-      "0.2.3": {
-        "en": "Use product names as brew switch IDs",
-        "de": "Produktnamen als IDs der Bezugsschalter verwenden"
-      },
-      "0.2.2": {
-        "en": "Add a brew switch for every catalog product",
-        "de": "Einen Bezugsschalter für jedes Produkt im Katalog hinzufügen"
-      },
-      "0.2.1": {
-        "en": "Support pairing when the machine has no PIN",
-        "de": "Kopplung ohne Maschinen-PIN unterstützen"
-      },
-      "0.2.0": {
-        "en": "Pair the coffee machine from ioBroker Admin",
-        "de": "Kaffeemaschine über ioBroker Admin koppeln"
-      },
-      "0.1.1": {
-        "en": "Require valid pairing for the connection indicator",
-        "de": "Verbindungsanzeige erfordert gültige Kopplung"
-      },
-      "0.1.0": {
-        "en": "Initial release for the JURA Z10",
-        "de": "Erste Version für die JURA Z10"
+        "de": "Eigene Getränke auch bei ausgeschalteter Maschine bearbeiten",
+        "ru": "Разрешить редактирование пользовательских напитков при выключенной кофемашине.",
+        "pt": "Permitir a edição de bebidas personalizadas com a máquina desligada.",
+        "nl": "Sta het bewerken van aangepaste dranken toe wanneer de machine uitstaat.",
+        "fr": "Permettre la modification des boissons personnalisées lorsque la machine est éteinte.",
+        "it": "Consenti la modifica delle bevande personalizzate quando la macchina è spenta.",
+        "es": "Permitir la edición de bebidas personalizadas con la cafetera apagada.",
+        "pl": "Umożliw edycję własnych napojów, gdy ekspres jest wyłączony.",
+        "uk": "Дозволити редагування власних напоїв, коли кавомашина вимкнена.",
+        "zh-cn": "允许在咖啡机关机时编辑自定义饮品。"
       }
     },
     "tier": 3,
