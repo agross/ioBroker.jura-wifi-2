@@ -626,7 +626,7 @@ test('statistics rename generated state IDs and preserve legacy history settings
   assert.equal(adapter.objects.has(oldCappuClean), false);
   assert.equal(adapter.states.has(oldCappuClean), false);
   assert.deepEqual(
-    (adapter.objects.get(oldFilterChange)?.common as ioBroker.StateCommon).custom,
+    (adapter.objects.get(oldFilterChange)?.common as ioBroker.StateCommon | undefined)?.custom,
     history,
   );
   assert.equal(adapter.states.get(oldFilterChange)?.val, 3);
@@ -634,6 +634,6 @@ test('statistics rename generated state IDs and preserve legacy history settings
   assert.equal(adapter.states.has(hexEspresso), false);
   const legacy = adapter.objects.get(hexCoffee);
   assert.equal(legacy?.type, 'state');
-  assert.deepEqual((legacy?.common as ioBroker.StateCommon).custom, history);
+  assert.deepEqual((legacy?.common as ioBroker.StateCommon | undefined)?.custom, history);
   assert.equal(adapter.states.get(hexCoffee)?.val, 3);
 });

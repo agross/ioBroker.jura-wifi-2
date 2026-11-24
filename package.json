@@ -22,7 +22,11 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "test": "npm run build && node --test \"build/test/**/*.test.js\"",
+    "lint": "oxlint --deny-warnings main.ts lib test scripts",
+    "test": "npm run build && npm run test:unit",
+    "test:unit": "node --test \"build/test/**/*.test.js\"",
+    "test:package": "node scripts/check-package-versions.cjs && mocha test/package.cjs",
+    "test:integration": "mocha test/integration.cjs",
     "test:ci": "node scripts/check-package-versions.cjs && npm test",
     "prepack": "npm run build",
     "release": "release-script"
@@ -35,7 +39,10 @@
     "@alcalzone/release-script-plugin-iobroker": "^5.2.0",
     "@alcalzone/release-script-plugin-license": "^5.2.2",
     "@alcalzone/release-script-plugin-manual-review": "^5.2.0",
+    "@iobroker/testing": "^6.3.2",
     "@types/node": "^26.0.0",
+    "mocha": "^12.0.3",
+    "oxlint": "^1.94.0",
     "typescript": "~7.0.0"
   }
 }

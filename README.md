@@ -167,7 +167,13 @@ Run `npm run build` to compile the TypeScript sources. Run `npm test` to run the
 protocol and adapter integration tests. The adapter tests use an in-memory
 ioBroker state store, a controlled clock, and a simulated machine on loopback
 sockets. `npm pack` builds and packages the adapter as CommonJS.
-Run `npm run test:ci` to run the same version checks and tests as GitHub Actions.
+Run `npm run test:ci` for version checks and the simulator tests. GitHub Actions
+also runs `npm run lint`, `npm run test:package` to validate the package files,
+and `npm run test:integration` to start the packaged adapter with ioBroker
+js-controller. The integration test needs no JURA machine.
+If npm is configured to ignore lifecycle scripts, run the integration test with
+`npm_config_ignore_scripts=false npm run test:integration` so js-controller can
+initialize its test directory.
 
 [makefu/jura-connect](https://github.com/makefu/jura-connect) is another
 upstream reference to check for protocol fixes, model-specific behavior, and

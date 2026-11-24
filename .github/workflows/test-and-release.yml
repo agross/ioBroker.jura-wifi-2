@@ -18,24 +18,33 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  check-and-lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22, 24, 26]
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: ioBroker/testing-action-check@v1
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: npm
-      - run: npm ci
-      - run: npm run test:ci
+          node-version: '24.x'
+          lint: true
         env:
           RELEASE_TAG: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
 
+  adapter-tests:
+    needs: check-and-lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [22.x, 24.x, 26.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: ioBroker/testing-action-adapter@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          os: ${{ matrix.os }}
+          build: true
+
   deploy:
-    needs: test
+    needs: [check-and-lint, adapter-tests]
     if: github.event_name == 'push' && github.ref_type == 'tag'
     runs-on: ubuntu-latest
     permissions:
