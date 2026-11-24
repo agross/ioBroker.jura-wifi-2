@@ -220,6 +220,7 @@ for subsequent versions.
 
 ### **WORK IN PROGRESS**
 
+- Use TypeScript 6.0.3 for compatibility with the ioBroker ESLint configuration.
 - Clean the build output with `@iobroker/adapter-dev` before compiling the adapter and tests.
 - Extend the shared Node.js 22 TypeScript configuration.
 - Use Node.js 22 types to match the minimum supported runtime.
