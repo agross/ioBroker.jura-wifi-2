@@ -220,6 +220,7 @@ for subsequent versions.
 
 ### **WORK IN PROGRESS**
 
+- Extend the shared Node.js 22 TypeScript configuration.
 - Use Node.js 22 types to match the minimum supported runtime.
 - Add VS Code schema validation for adapter metadata and Admin settings.
 - Remove the obsolete `materialize` flag from the Admin configuration metadata.
