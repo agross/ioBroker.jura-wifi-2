@@ -14,4 +14,10 @@
   labels: [
     'dependencies',
   ],
+  packageRules: [
+    {
+      matchPackageNames: ['@types/node'],
+      allowedVersions: '<23',
+    },
+  ],
 }

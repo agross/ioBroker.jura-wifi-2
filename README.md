@@ -220,6 +220,7 @@ for subsequent versions.
 
 ### **WORK IN PROGRESS**
 
+- Use Node.js 22 types to match the minimum supported runtime.
 - Add VS Code schema validation for adapter metadata and Admin settings.
 - Remove the obsolete `materialize` flag from the Admin configuration metadata.
 - Rename the adapter title to JURA WiFi Connect V2.
