@@ -155,7 +155,7 @@ export async function startAdapter(
   const requireFromAdapter = createRequire(entry);
   const load = compileFunction(
     readFileSync(entry, 'utf8'),
-    ['require', 'module', 'performance', 'setTimeout', 'clearTimeout'],
+    ['require', 'module', 'performance'],
     { filename: entry },
   );
   const fakeModule: { exports: unknown } = { exports: {} };
@@ -173,16 +173,8 @@ export async function startAdapter(
     pollStatus: (host, options) =>
       protocol.pollStatus(host, { ...options, port: machine.udpPort }),
   };
-  const testRequire = (id: string) => {
-    if (id === '@iobroker/adapter-core') return { Adapter: StateStore };
-    if (id === './lib/jura') return { ...protocol, ...transport };
-    return requireFromAdapter(id);
-  };
-  load(
-    testRequire,
-    fakeModule,
-    { now: () => now },
-    (callback: () => void, milliseconds: number) => {
+  class TestAdapter extends StateStore {
+    setTimeout(callback: () => void, milliseconds: number) {
       assert.equal(
         timer,
         undefined,
@@ -190,17 +182,27 @@ export async function startAdapter(
       );
       timer = { callback, due: now + milliseconds };
       return timer;
-    },
-    (pending: typeof timer) => {
+    }
+
+    clearTimeout(pending: typeof timer) {
       if (pending === timer) timer = undefined;
-    },
-  );
+    }
+  }
+  const testRequire = (id: string) => {
+    if (id === '@iobroker/adapter-core') return { Adapter: TestAdapter };
+    if (id === './lib/jura') return { ...protocol, ...transport };
+    return requireFromAdapter(id);
+  };
+  load(testRequire, fakeModule, { now: () => now });
   const factory = fakeModule.exports as (options: {
     config: ioBroker.AdapterConfig;
   }) => StateStore;
   const adapter = factory({ config });
   seed?.(adapter);
-  t.after(() => new Promise<void>(resolve => adapter.emit('unload', resolve)));
+  t.after(async () => {
+    await new Promise<void>(resolve => adapter.emit('unload', resolve));
+    assert.equal(timer, undefined, 'unload should clear the pending poll');
+  });
   adapter.emit('ready');
   if (config.host) await until(() => timer !== undefined, 'the first poll');
 

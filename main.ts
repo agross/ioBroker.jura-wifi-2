@@ -253,7 +253,7 @@ class JuraAdapter extends Adapter {
   private readonly lifecycle = new AbortController();
   private machineHost = '';
   private interval = 2000;
-  private timer?: NodeJS.Timeout;
+  private timer?: ioBroker.Timeout;
   private startup?: Promise<void>;
   private polling?: Promise<void>;
   private operation?: Promise<unknown>;
@@ -290,7 +290,7 @@ class JuraAdapter extends Adapter {
     );
     this.on('unload', (callback: ioBroker.EmptyCallback) => {
       this.lifecycle.abort();
-      clearTimeout(this.timer);
+      this.clearTimeout(this.timer);
       Promise.allSettled([
         this.startup,
         this.polling,
@@ -381,7 +381,8 @@ class JuraAdapter extends Adapter {
   }
 
   private schedulePoll(delay: number) {
-    this.timer = setTimeout(() => {
+    this.timer = this.setTimeout(() => {
+      this.timer = undefined;
       this.polling = this.poll()
         .catch(error => this.log.error(errorMessage(error)))
         .finally(() => {
