@@ -301,6 +301,7 @@ export function catalogFor(model: string): MachineCatalog | null {
     ? modelCode
     : modelCode.replace(/M$/, '');
   return catalogIds.has(id)
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- Load and cache the selected catalog synchronously.
     ? (require(path.join(catalogDirectory, id + '.json')) as MachineCatalog)
     : null;
 }
