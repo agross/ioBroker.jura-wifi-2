@@ -70,7 +70,7 @@
       "uk": "Відстежуйте стан кавомашини JURA та керуйте нею в локальній мережі.",
       "zh-cn": "在局域网中监控和控制 JURA 咖啡机。"
     },
-    "authors": ["Alexander Groß"],
+    "authors": ["Alexander Groß <agross@therightstuff.de>"],
     "licenseInformation": { "type": "free", "license": "MIT" },
     "platform": "Javascript/Node.js",
     "mode": "daemon",

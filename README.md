@@ -243,6 +243,8 @@ for subsequent versions.
 
 ## License
 
+Copyright (c) 2026 Alexander Groß <agross@therightstuff.de>
+
 The protocol and original model catalogs come from
 [kykc/juras](https://github.com/kykc/juras/tree/f5d51080b504196347d3049c5910dbfd007c149f)
 under the [MIT license](LICENSE). The catalog refresh uses the J.O.E. machine
